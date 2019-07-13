@@ -34,7 +34,8 @@ function send (options) {
 // send({ command: 'get', args: ['fk', '10,15,20'] })
 // send({ command: 'get', args: ['ik', '-m', '10,15,20'] })
 // send({ command: 'get', args: ['pos'] })
-send({ command: 'get', args: ['state'] })
+// send({ command: 'get', args: ['state'] })
+send({ command: 'get', args: ['status'] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
