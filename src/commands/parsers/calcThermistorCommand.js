@@ -10,7 +10,6 @@ const coefficientsPattern = /Steinhart Hart coefficients: {2}I([0-9.]+) J([0-9.]
 const savedPattern = /Setting Thermistor/
 
 function parse ({ args, response }) {
-  console.log('parse:', { command, args, response })
   // throw an error if something goes wrong
   if (response.startsWith('Usage:')) {
     throw new CommandError({
