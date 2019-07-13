@@ -1,23 +1,20 @@
-import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
+import { COULD_NOT_RENAME_ERROR } from '../error-types.js'
 import CommandError from '../CommandError.js'
 
 const command = 'mv'
-const usage = 'mv <arg1> [<arg2>]'
-const description = 'Command description...'
+const usage = 'mv <source> <target>'
+const description = 'Move a file from source to target path'
 
 function parse ({ args, response }) {
-  console.log('parse:', { command, args, response })
   // throw an error if something goes wrong
-  if (response === 42) {
+  if (response.startsWith('Could not rename')) {
     throw new CommandError({
-      type: UNKNOWN_RESPONSE_ERROR,
-      message: `Unknown response\nUsage: ${usage}`
+      type: COULD_NOT_RENAME_ERROR,
+      message: response
     })
   }
-  // create data object
-  let data = {}
-  // always return data object
-  return data
+  // create and return data object
+  return { source: args[0], target: args[1] }
 }
 
 export const mvCommand = {

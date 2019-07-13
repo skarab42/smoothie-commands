@@ -43,7 +43,8 @@ function send (options) {
 // send({ command: 'ls', args: ['-s', '/sd'] })
 // send({ command: 'md5sum', args: ['/sd/config.txt'] })
 // send({ command: 'mem', args: ['-v'] })
-send({ command: 'mkdir', args: ['/sd/test'] })
+// send({ command: 'mkdir', args: ['/sd/test'] })
+send({ command: 'mv', args: ['/sd/test2.txt', '/sd/test3.txt'] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
