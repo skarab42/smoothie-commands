@@ -12,7 +12,7 @@ import { getWcsCommand } from './getWcsCommand.js'
 const options = ['fk', 'ik', 'pos', 'state', 'status', 'temp', 'wcs']
 
 const command = 'get'
-const usage = 'get <arg1> <...options>'
+const usage = 'get <fk|ik|pos|state|status|temp|wcs> <...options>'
 const description = 'Get some values'
 
 function parse ({ args, response }) {
