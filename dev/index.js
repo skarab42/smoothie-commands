@@ -38,7 +38,8 @@ function send (options) {
 // send({ command: 'get', args: ['status'] })
 // send({ command: 'get', args: ['temp', 'bed'] })
 // send({ command: 'get', args: ['wcs'] })
-send({ command: 'help' })
+// send({ command: 'help' })
+send({ command: 'load', args: ['/sd/config-override'] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -81,7 +82,7 @@ send({ command: 'help' })
 // getTempCommand        | DONE
 // getWcsCommand         | DONE
 // helpCommand           | DONE
-// loadCommand           |
+// loadCommand           | DONE
 // lsCommand             |
 // md5sumCommand         |
 // memCommand            |
