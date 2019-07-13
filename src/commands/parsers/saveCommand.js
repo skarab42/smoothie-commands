@@ -7,7 +7,6 @@ const usage = 'save <file>'
 const description = 'Saves the specified config-override file'
 
 function parse ({ args, response }) {
-  console.log('parse:', { command, args, response })
   // throw an error if something goes wrong
   if (!response.startsWith('Settings Stored to ')) {
     throw new CommandError({
