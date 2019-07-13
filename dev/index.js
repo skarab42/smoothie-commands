@@ -41,7 +41,8 @@ function send (options) {
 // send({ command: 'help' })
 // send({ command: 'load', args: ['/sd/config-override'] })
 // send({ command: 'ls', args: ['-s', '/sd'] })
-send({ command: 'md5sum', args: ['/sd/config.txt'] })
+// send({ command: 'md5sum', args: ['/sd/config.txt'] })
+send({ command: 'mem', args: ['-v'] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -87,7 +88,7 @@ send({ command: 'md5sum', args: ['/sd/config.txt'] })
 // loadCommand           | DONE
 // lsCommand             | DONE
 // md5sumCommand         | DONE
-// memCommand            |
+// memCommand            | DONE
 // mkdirCommand          |
 // mvCommand             |
 // netCommand            |
