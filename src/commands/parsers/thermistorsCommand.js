@@ -2,22 +2,31 @@ import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
 import CommandError from '../CommandError.js'
 
 const command = 'thermistors'
-const usage = 'thermistors <arg1> [<arg2>]'
-const description = 'Command description...'
+const usage = 'thermistors'
+const description = 'Get predefined thermistors'
 
 function parse ({ args, response }) {
-  console.log('parse:', { command, args, response })
-  // throw an error if something goes wrong
-  if (response === 42) {
+  if (!response.startsWith('S/H table')) {
     throw new CommandError({
       type: UNKNOWN_RESPONSE_ERROR,
       message: `Unknown response\nUsage: ${usage}`
     })
   }
-  // create data object
-  let data = {}
+  let lines = response.split('\n')
+  lines.shift()
+  let table = []
+  let beta = []
+  let pointer = table
+  lines.forEach(line => {
+    if (line.startsWith('Beta table')) {
+      pointer = beta
+      return
+    }
+    let parts = line.split('-')
+    pointer.push({ id: parseInt(parts[0].trim()), name: parts[1].trim() })
+  })
   // always return data object
-  return data
+  return { table, beta }
 }
 
 export const thermistorsCommand = {
