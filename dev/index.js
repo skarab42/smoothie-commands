@@ -51,7 +51,8 @@ function send (options) {
 // send({ command: 'reset' })
 // send({ command: 'rm', args: ['/sd/test3.txt'] })
 // send({ command: 'save', args: ['/sd/config-override.txt'] })
-send({ command: 'set_temp', args: ['bed', 50] })
+// send({ command: 'set_temp', args: ['bed', 50] })
+send({ command: 'switch', args: ['fan'] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -109,9 +110,9 @@ send({ command: 'set_temp', args: ['bed', 50] })
 // resumeCommand         | DONE
 // rmCommand             | DONE
 // saveCommand           | DONE
-// setTempCommand        |
+// setTempCommand        | DONE
 // suspendCommand        | DONE
-// switchCommand         |
+// switchCommand         | DONE
 // testCircleCommand     |
 // testCommand           | DONE
 // testJogCommand        |

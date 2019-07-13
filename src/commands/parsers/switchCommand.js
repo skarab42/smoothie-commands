@@ -1,23 +1,36 @@
-import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
+// https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L957
+import { UNKNOWN_RESPONSE_ERROR, UNKNOWN_DEVICE_ERROR } from '../error-types.js'
 import CommandError from '../CommandError.js'
 
 const command = 'switch'
-const usage = 'switch <arg1> [<arg2>]'
-const description = 'Command description...'
+const usage = 'switch <name> [onf|off]'
+const description = 'Set or get switch state for a named switch'
 
 function parse ({ args, response }) {
-  console.log('parse:', { command, args, response })
-  // throw an error if something goes wrong
-  if (response === 42) {
+  if (
+    response.startsWith('unknown switch') ||
+    response.endsWith('is not a known switch device')
+  ) {
+    throw new CommandError({
+      type: UNKNOWN_DEVICE_ERROR,
+      message: response
+    })
+  }
+  const matches = response.match(/switch (.*) (?:is|set to:) (.*)/)
+  if (!matches || response.startsWith('must be')) {
     throw new CommandError({
       type: UNKNOWN_RESPONSE_ERROR,
       message: `Unknown response\nUsage: ${usage}`
     })
   }
-  // create data object
-  let data = {}
-  // always return data object
-  return data
+  let value = matches[2]
+  if (matches[2] === '0') {
+    value = 'off'
+  } else if (matches[2] === '1') {
+    value = 'on'
+  }
+  // allaways return data object
+  return { name: matches[1], value }
 }
 
 export const switchCommand = {
