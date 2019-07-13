@@ -1,9 +1,10 @@
+// https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L870
 import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
 import CommandError from '../CommandError.js'
 
 const command = 'get state'
-const usage = 'get state <arg1> [<arg2>]'
-const description = 'Command description...'
+const usage = 'get state'
+const description = 'Get state'
 
 function parse ({ args, response }) {
   try {
