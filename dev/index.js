@@ -47,7 +47,8 @@ function send (options) {
 // send({ command: 'mv', args: ['/sd/test2.txt', '/sd/test3.txt'] })
 // send({ command: 'net' })
 // send({ command: 'pwd' })
-send({ command: 'remount' })
+// send({ command: 'remount' })
+send({ command: 'reset' })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
