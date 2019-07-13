@@ -37,7 +37,8 @@ function send (options) {
 // send({ command: 'get', args: ['state'] })
 // send({ command: 'get', args: ['status'] })
 // send({ command: 'get', args: ['temp', 'bed'] })
-send({ command: 'get', args: ['wcs'] })
+// send({ command: 'get', args: ['wcs'] })
+send({ command: 'help' })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -79,7 +80,7 @@ send({ command: 'get', args: ['wcs'] })
 // getStatusCommand      | DONE
 // getTempCommand        | DONE
 // getWcsCommand         | DONE
-// helpCommand           |
+// helpCommand           | DONE
 // loadCommand           |
 // lsCommand             |
 // md5sumCommand         |
