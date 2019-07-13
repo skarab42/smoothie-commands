@@ -52,7 +52,11 @@ function send (options) {
 // send({ command: 'rm', args: ['/sd/test3.txt'] })
 // send({ command: 'save', args: ['/sd/config-override.txt'] })
 // send({ command: 'set_temp', args: ['bed', 50] })
-send({ command: 'switch', args: ['fan'] })
+// send({ command: 'switch', args: ['fan'] })
+// send({ command: 'test', args: ['circle', 10, 5, 5000] })
+// send({ command: 'test', args: ['jog', 'x', 10, 5, 5000] })
+// send({ command: 'test', args: ['raw', 'x', 200, 200] })
+// send({ command: 'test', args: ['square', 10, 5, 5000] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -113,11 +117,11 @@ send({ command: 'switch', args: ['fan'] })
 // setTempCommand        | DONE
 // suspendCommand        | DONE
 // switchCommand         | DONE
-// testCircleCommand     |
+// testCircleCommand     | DONE
 // testCommand           | DONE
-// testJogCommand        |
-// testRawCommand        |
-// testSquareCommand     |
+// testJogCommand        | DONE
+// testRawCommand        | DONE
+// testSquareCommand     | DONE
 // thermistorsCommand    |
 // uploadCommand         |
 // versionCommand        | DONE

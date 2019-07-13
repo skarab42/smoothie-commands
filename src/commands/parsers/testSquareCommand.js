@@ -1,23 +1,21 @@
-import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
+// https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L1103
+import { INVALID_PARAMETER_ERROR } from '../error-types.js'
 import CommandError from '../CommandError.js'
 
 const command = 'test square'
-const usage = 'test square <arg1> [<arg2>]'
-const description = 'Command description...'
+const usage = 'test square <size> <iterations> [feedrate]'
+const description = 'Draws a square from origin'
 
 function parse ({ args, response }) {
-  console.log('parse:', { command, args, response })
   // throw an error if something goes wrong
-  if (response === 42) {
+  if (response.startsWith('error:')) {
     throw new CommandError({
-      type: UNKNOWN_RESPONSE_ERROR,
-      message: `Unknown response\nUsage: ${usage}`
+      type: INVALID_PARAMETER_ERROR,
+      message: `Invalid parameter\nUsage: ${usage}`
     })
   }
-  // create data object
-  let data = {}
   // always return data object
-  return data
+  return { gcode: response.split('\n').slice(0, -1) }
 }
 
 export const testSquareCommand = {
