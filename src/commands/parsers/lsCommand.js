@@ -1,6 +1,8 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L301
 import { UNKNOWN_RESPONSE_ERROR, DIRECTORY_NOT_FOUND_ERROR } from '../error-types.js'
 import CommandError from '../CommandError.js'
+import folderFactory from '../folderFactory.js'
+import fileFactory from '../fileFactory.js'
 
 const command = 'ls'
 const usage = 'ls [-s] <file>'
@@ -13,32 +15,6 @@ function sortByPath (files) {
     if (a.path > b.path) return 1
     return 0
   })
-}
-
-function folderFactory ({ path, line }) {
-  const name = line.slice(0, -1)
-  const folderPath = `${path}/${name}`
-  return {
-    type: 'folder',
-    name,
-    path: folderPath,
-    parent: path
-  }
-}
-
-function fileFactory ({ path, line, getSize }) {
-  let name = line
-  let parts = line.split(' ')
-  let size = getSize ? parseInt(parts.pop()) : undefined
-  name = parts.join(' ')
-  return {
-    name,
-    size,
-    type: 'file',
-    parent: path,
-    path: `${path}/${name}`,
-    extension: name.split('.').pop()
-  }
 }
 
 function parse ({ args, response }) {
