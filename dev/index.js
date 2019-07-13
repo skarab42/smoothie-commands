@@ -27,7 +27,8 @@ function send (options) {
 // send({ command: 'cd', args: ['/'] })
 // send({ command: 'config-get', args: ['sd', 'extruder.hotend.steps_per_mm'] })
 // send({ command: 'config-load', args: ['checksum'] })
-send({ command: 'config-set', args: ['sd', 'extruder.hotend.steps_per_mm', 42] })
+// send({ command: 'config-set', args: ['sd', 'extruder.hotend.steps_per_mm', 42] })
+send({ command: 'dfu' })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -57,8 +58,8 @@ send({ command: 'config-set', args: ['sd', 'extruder.hotend.steps_per_mm', 42] }
 // cdCommand             | DONE
 // configGetCommand      | DONE
 // configLoadCommand     | DONE
-// configSetCommand      |
-// dfuCommand            |
+// configSetCommand      | DONE
+// dfuCommand            | DONE
 // echoCommand           |
 // fireCommand           |
 // getCommand            | DONE
