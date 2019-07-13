@@ -44,7 +44,8 @@ function send (options) {
 // send({ command: 'md5sum', args: ['/sd/config.txt'] })
 // send({ command: 'mem', args: ['-v'] })
 // send({ command: 'mkdir', args: ['/sd/test'] })
-send({ command: 'mv', args: ['/sd/test2.txt', '/sd/test3.txt'] })
+// send({ command: 'mv', args: ['/sd/test2.txt', '/sd/test3.txt'] })
+send({ command: 'net' })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -92,8 +93,8 @@ send({ command: 'mv', args: ['/sd/test2.txt', '/sd/test3.txt'] })
 // md5sumCommand         | DONE
 // memCommand            | DONE
 // mkdirCommand          | DONE
-// mvCommand             |
-// netCommand            |
+// mvCommand             | DONE
+// netCommand            | DONE
 // playCommand           | DONE
 // progressCommand       | DONE
 // pwdCommand            |

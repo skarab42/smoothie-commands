@@ -1,23 +1,46 @@
+// https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L637
 import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
 import CommandError from '../CommandError.js'
 
 const command = 'net'
-const usage = 'net <arg1> [<arg2>]'
-const description = 'Command description...'
+const usage = 'net'
+const description = 'Get network informations'
+
+function parseResponse (response) {
+  let parts = response.split('\n')
+  let address = parts.shift()
+  let gateway = parts.shift()
+  let mask = parts.shift()
+  let MAC = parts.shift()
+  if (!address.startsWith('IP Addr: ')) {
+    throw new Error(`Undefined IP address`)
+  }
+  if (!gateway.startsWith('IP GW: ')) {
+    throw new Error(`Undefined network gateway`)
+  }
+  if (!mask.startsWith('IP mask: ')) {
+    throw new Error(`Undefined network mask`)
+  }
+  if (!MAC.startsWith('MAC Address: ')) {
+    throw new Error(`Undefined MAC address`)
+  }
+  return {
+    address: address.slice(9),
+    gateway: gateway.slice(7),
+    mask: mask.slice(9),
+    MAC: MAC.slice(13)
+  }
+}
 
 function parse ({ args, response }) {
-  console.log('parse:', { command, args, response })
-  // throw an error if something goes wrong
-  if (response === 42) {
+  try {
+    return parseResponse(response)
+  } catch (error) {
     throw new CommandError({
       type: UNKNOWN_RESPONSE_ERROR,
       message: `Unknown response\nUsage: ${usage}`
     })
   }
-  // create data object
-  let data = {}
-  // always return data object
-  return data
 }
 
 export const netCommand = {
