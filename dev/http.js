@@ -20,18 +20,18 @@ function send (options) {
     })
 }
 
-// send({ command: 'abort' })
+// send({ command: 'dabort' })
 // send({ command: 'break' })
-// send({ command: 'calc_thermistor', args: ['25,100000.0,150,1655.0,240,269.0'] })
+// send({ command: 'calc_thermistor', args: ['100000.0,150,1655.0,240,269.0'] })
 // send({ command: 'cat', args: ['/sd/test-circle-10.gcode'] })
 // send({ command: 'cd', args: ['/'] })
 // send({ command: 'config-get', args: ['sd', 'extruder.hotend.steps_per_mm'] })
-// send({ command: 'config-load', args: ['checksum'] })
+// send({ command: 'config-load', args: ['schecksum'] })
 // send({ command: 'config-set', args: ['sd', 'extruder.hotend.steps_per_mm', 42] })
 // send({ command: 'dfu' })
 // send({ command: 'echo', args: ['hello smoothie'] })
 // send({ command: 'fire', args: [10, 5] })
-// send({ command: 'get', args: ['fk', '10,15,20'] })
+// send({ command: 'get', args: ['dfk', '10,15,20'] })
 // send({ command: 'get', args: ['ik', '-m', '10,15,20'] })
 // send({ command: 'get', args: ['pos'] })
 // send({ command: 'get', args: ['state'] })
@@ -67,7 +67,7 @@ function send (options) {
 // send({ command: 'upload', args: ['prout/pouet.txt', 'Pouet...', 'sd'] })
 // send({ command: 'upload', args: ['/prout/pouet.txt', 'Pouet...', 'sd/'] })
 // send({ command: 'upload', args: ['pouet2.txt', 'Pouet...'] })
-send({ command: 'version' })
+// send({ command: 'version' })
 
 // send({ command: 'play', args: ['/sd/test-circle-10.gcode'] })
 //   .then(response => {

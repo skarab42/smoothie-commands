@@ -1,22 +1,13 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L281
 // https://github.com/Smoothieware/Smoothieware/blob/0faa088fe1a2207f6c0b99ec7abccfbd1162f730/src/modules/utils/configurator/Configurator.cpp#L106
-import { UNDEFINED_SETTING_ERROR } from '../error-types.js'
-import CommandError from '../CommandError.js'
+import InvalidParameterError from '../errors/InvalidParameterError.js'
+import UnknownResponseError from '../errors/UnknownResponseError.js'
 
 const command = 'config-load'
 const usage = 'config-load <load|unload|dump|checksum>'
 const description = 'Load config values from the specified source'
 
-function parse ({ args, response }) {
-  const option = args[0]
-  // throw an error if something goes wrong
-  if (response.startsWith('unsupported option:')) {
-    throw new CommandError({
-      type: UNDEFINED_SETTING_ERROR,
-      message: `Invalid option [ ${option} ]`
-    })
-  }
-  // create data object
+function parseResponse (option, response) {
   let data = {}
   if (option === 'dump') {
     data = { dump: response.split('\n') }
@@ -31,6 +22,20 @@ function parse ({ args, response }) {
   }
   // always return data object
   return data
+}
+
+function parse ({ args, response }) {
+  const option = args[0] || null
+  // throw an error if something goes wrong
+  if (response.startsWith('unsupported option:')) {
+    throw new InvalidParameterError(option, usage)
+  }
+  // always return data object
+  try {
+    return parseResponse(option, response)
+  } catch (error) {
+    throw new UnknownResponseError(usage, error)
+  }
 }
 
 export const configLoadCommand = {

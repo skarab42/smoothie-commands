@@ -1,18 +1,11 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L911
-import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
-import CommandError from '../CommandError.js'
+import UnknownResponseError from '../errors/UnknownResponseError.js'
 
 const command = 'thermistors'
 const usage = 'thermistors'
 const description = 'Get predefined thermistors'
 
-function parse ({ args, response }) {
-  if (!response.startsWith('S/H table')) {
-    throw new CommandError({
-      type: UNKNOWN_RESPONSE_ERROR,
-      message: `Unknown response\nUsage: ${usage}`
-    })
-  }
+function parseResponse (response) {
   let lines = response.split('\n')
   lines.shift()
   let table = []
@@ -26,8 +19,15 @@ function parse ({ args, response }) {
     let parts = line.split('-')
     pointer.push({ id: parseInt(parts[0].trim()), name: parts[1].trim() })
   })
-  // always return data object
   return { table, beta }
+}
+
+function parse ({ args, response }) {
+  try {
+    return parseResponse(response)
+  } catch (error) {
+    throw new UnknownResponseError(usage, error)
+  }
 }
 
 export const thermistorsCommand = {

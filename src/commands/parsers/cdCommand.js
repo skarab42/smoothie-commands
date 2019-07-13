@@ -1,6 +1,6 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L375
-import { UNKNOWN_RESPONSE_ERROR, DIRECTORY_NOT_FOUND_ERROR } from '../error-types.js'
-import CommandError from '../CommandError.js'
+import UnknownResponseError from '../errors/UnknownResponseError.js'
+import CouldNotOpenError from '../errors/CouldNotOpenError.js'
 
 const command = 'cd'
 const usage = 'cd <path>'
@@ -9,23 +9,13 @@ const description = 'Change current absolute path to provided path'
 function parse ({ args, response }) {
   // throw an error if something goes wrong
   if (response.startsWith('Could not open directory')) {
-    throw new CommandError({
-      type: DIRECTORY_NOT_FOUND_ERROR,
-      message: response
-    })
+    throw new CouldNotOpenError(args[0] || null)
   }
   if (response !== '') {
-    throw new CommandError({
-      type: UNKNOWN_RESPONSE_ERROR,
-      message: `Unknown response\nUsage: ${usage}`
-    })
-  }
-  // create data object
-  let data = {
-    cwd: args[0]
+    throw new UnknownResponseError(usage)
   }
   // always return data object
-  return data
+  return { cwd: args[0] }
 }
 
 export const cdCommand = {

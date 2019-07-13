@@ -1,6 +1,5 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L870
-import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
-import CommandError from '../CommandError.js'
+import UnknownResponseError from '../errors/UnknownResponseError.js'
 
 const command = 'get state'
 const usage = 'get state'
@@ -24,10 +23,7 @@ function parse ({ args, response }) {
       sValue: state[11]
     }
   } catch (error) {
-    throw new CommandError({
-      type: UNKNOWN_RESPONSE_ERROR,
-      message: `Unknown response\nUsage: ${usage}`
-    })
+    throw new UnknownResponseError(usage, error)
   }
 }
 

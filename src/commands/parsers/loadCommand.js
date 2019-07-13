@@ -1,7 +1,7 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L281
 // https://github.com/Smoothieware/Smoothieware/blob/0faa088fe1a2207f6c0b99ec7abccfbd1162f730/src/modules/utils/configurator/Configurator.cpp#L106
-import { UNKNOWN_RESPONSE_ERROR, FILE_NOT_FOUND_ERROR } from '../error-types.js'
-import CommandError from '../CommandError.js'
+import UnknownResponseError from '../errors/UnknownResponseError.js'
+import FileNotFoundError from '../errors/FileNotFoundError.js'
 
 const command = 'load'
 const usage = 'load <file>'
@@ -14,19 +14,13 @@ function parse ({ args, response }) {
   let configText = lines.join('\n').trim()
   // throw an error if something goes wrong
   if (response.startsWith('File not found: ')) {
-    throw new CommandError({
-      type: FILE_NOT_FOUND_ERROR,
-      message: response
-    })
+    throw new FileNotFoundError(args[0] || null)
   }
   if (
     !header.startsWith('Loading config override file: ') ||
     !footer.startsWith('config override file executed')
   ) {
-    throw new CommandError({
-      type: UNKNOWN_RESPONSE_ERROR,
-      message: `Unknown response\nUsage: ${usage}`
-    })
+    throw new UnknownResponseError(usage)
   }
   // parse...
   let config = []
@@ -43,10 +37,8 @@ function parse ({ args, response }) {
       description = []
     }
   })
-  // create data object
-  let data = { file: header.slice(30, -3), configText, config }
   // always return data object
-  return data
+  return { file: header.slice(30, -3), configText, config }
 }
 
 export const loadCommand = {

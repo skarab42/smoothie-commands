@@ -1,6 +1,4 @@
-import { UNSUPPORTED_SUBCOMMAND_ERROR } from '../error-types.js'
-import CommandError from '../CommandError.js'
-
+import UnsupportedSubcommandError from '../errors/UnsupportedSubcommandError.js'
 import { testSquareCommand } from './testSquareCommand.js'
 import { testCircleCommand } from './testCircleCommand.js'
 import { testJogCommand } from './testJogCommand.js'
@@ -16,10 +14,7 @@ function parse ({ args, response }) {
   const subcommand = args.shift()
   // throw an error if something goes wrong
   if (!options.includes(subcommand)) {
-    throw new CommandError({
-      type: UNSUPPORTED_SUBCOMMAND_ERROR,
-      message: `Unsupported subcommand [${subcommand}]\nUsage: ${usage}`
-    })
+    throw new UnsupportedSubcommandError(subcommand, usage)
   }
   // delegate
   switch (subcommand) {

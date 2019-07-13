@@ -1,7 +1,8 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L275
 // https://github.com/Smoothieware/Smoothieware/blob/0faa088fe1a2207f6c0b99ec7abccfbd1162f730/src/modules/utils/configurator/Configurator.cpp#L30
-import { UNKNOWN_RESPONSE_ERROR, UNDEFINED_SETTING_ERROR } from '../error-types.js'
-import CommandError from '../CommandError.js'
+import InvalidParameterError from '../errors/InvalidParameterError.js'
+import UndefinedSettingError from '../errors/UndefinedSettingError.js'
+import UnknownResponseError from '../errors/UnknownResponseError.js'
 
 const command = 'config-get'
 const usage = 'config-get [local|sd|cache] <setting>'
@@ -16,29 +17,18 @@ function parse ({ args, response }) {
   }
   // throw an error if something goes wrong
   if (!response.length) {
-    throw new CommandError({
-      type: UNDEFINED_SETTING_ERROR,
-      message: `Undefined source [ ${source} ], allowed: [local|sd|cache]`
-    })
+    throw new InvalidParameterError(source, usage)
   }
   if (response.endsWith('is not in config')) {
-    throw new CommandError({
-      type: UNDEFINED_SETTING_ERROR,
-      message: `Undefined setting [ ${source}:${setting} ]`
-    })
+    throw new UndefinedSettingError(`${source}:${setting}`, usage)
   }
   // parse response
   let matches = response.match(/([^:]+): ([^ ]+) is set to (.+)/)
   if (!matches) {
-    throw new CommandError({
-      type: UNKNOWN_RESPONSE_ERROR,
-      message: `Unknown response\nUsage: ${usage}`
-    })
+    throw new UnknownResponseError(usage)
   }
-  // create data object
-  let data = { source, setting, value: matches[3] }
   // always return data object
-  return data
+  return { source, setting, value: matches[3] }
 }
 
 export const configGetCommand = {

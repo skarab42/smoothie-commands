@@ -1,11 +1,8 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L283
 // https://github.com/Smoothieware/Smoothieware/blob/489e577025b6df397ed8d3aa0707ff25e3dd1a97/src/modules/utils/player/Player.cpp#L325
-import {
-  UNKNOWN_RESPONSE_ERROR,
-  NOT_CURRENTLY_PLAYING_ERROR,
-  UNKNOWN_FILE_SIZE_ERROR
-} from '../error-types.js'
-import CommandError from '../CommandError.js'
+import NotCurrentlyPlayingError from '../errors/NotCurrentlyPlayingError.js'
+import UnknownFileSizeError from '../errors/UnknownFileSizeError.js'
+import UnknownResponseError from '../errors/UnknownResponseError.js'
 
 const command = 'progress'
 const usage = 'progress [-b]'
@@ -18,16 +15,10 @@ const filePattern = /file: ([^,]+), ([0-9]+) % complete, elapsed time: ([0-9:]+)
 function parse ({ args, response }) {
   // throw an error if something goes wrong
   if (response.startsWith('Not currently playing')) {
-    throw new CommandError({
-      type: NOT_CURRENTLY_PLAYING_ERROR,
-      message: response
-    })
+    throw new NotCurrentlyPlayingError()
   }
   if (response.startsWith('File size is unknown')) {
-    throw new CommandError({
-      type: UNKNOWN_FILE_SIZE_ERROR,
-      message: response
-    })
+    throw new UnknownFileSizeError()
   }
   // SD printing
   const printingMatches = response.match(printingPattern)
@@ -53,10 +44,7 @@ function parse ({ args, response }) {
     return { file, percent, elapsedTime, estimatedTime }
   }
   // throw an error if something goes wrong
-  throw new CommandError({
-    type: UNKNOWN_RESPONSE_ERROR,
-    message: `Unknown response\nUsage: ${usage}`
-  })
+  throw new UnknownResponseError(usage)
 }
 
 export const progressCommand = {

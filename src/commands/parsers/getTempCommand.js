@@ -1,10 +1,7 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L783
-import {
-  UNKNOWN_RESPONSE_ERROR,
-  NO_HEATERS_FOUND_ERROR,
-  UNKNOWN_DEVICE_ERROR
-} from '../error-types.js'
-import CommandError from '../CommandError.js'
+import NotHeatersFoundError from '../errors/NotHeatersFoundError.js'
+import UnknownResponseError from '../errors/UnknownResponseError.js'
+import UnknownDeviceError from '../errors/UnknownDeviceError.js'
 
 const command = 'get temp'
 const usage = 'get temp [device]'
@@ -34,16 +31,10 @@ function parseTemp (line) {
 
 function parse ({ args, response }) {
   if (response.startsWith('no heaters found')) {
-    throw new CommandError({
-      type: NO_HEATERS_FOUND_ERROR,
-      message: 'No heaters found'
-    })
+    throw new NotHeatersFoundError()
   }
   if (response.endsWith('is not a known temperature device')) {
-    throw new CommandError({
-      type: UNKNOWN_DEVICE_ERROR,
-      message: `Unknown device [ ${name} ]`
-    })
+    throw new UnknownDeviceError(name)
   }
   // set data
   try {
@@ -55,10 +46,7 @@ function parse ({ args, response }) {
     }
     return data
   } catch (error) {
-    throw new CommandError({
-      type: UNKNOWN_RESPONSE_ERROR,
-      message: `Unknown response\nUsage: ${usage}`
-    })
+    throw new UnknownResponseError(usage, error)
   }
 }
 

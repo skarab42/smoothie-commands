@@ -1,0 +1,11 @@
+import CommandError from './CommandError.js'
+import { NOT_SUSPENDED_ERROR } from './types.js'
+
+export default class NotSuspendedError extends CommandError {
+  constructor () {
+    super({
+      type: NOT_SUSPENDED_ERROR,
+      message: 'Not suspended play.'
+    })
+  }
+}
