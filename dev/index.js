@@ -50,7 +50,8 @@ function send (options) {
 // send({ command: 'remount' })
 // send({ command: 'reset' })
 // send({ command: 'rm', args: ['/sd/test3.txt'] })
-send({ command: 'save', args: ['/sd/config-override.txt'] })
+// send({ command: 'save', args: ['/sd/config-override.txt'] })
+send({ command: 'set_temp', args: ['bed', 50] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
