@@ -1,21 +1,22 @@
-import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
+// https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L1009
+import { FILE_NOT_FOUND_ERROR } from '../error-types.js'
 import CommandError from '../CommandError.js'
 
 const command = 'md5sum'
-const usage = 'md5sum <arg1> [<arg2>]'
-const description = 'Command description...'
+const usage = 'md5sum <file>'
+const description = 'Get the md5 sum for a file'
 
 function parse ({ args, response }) {
-  console.log('parse:', { command, args, response })
   // throw an error if something goes wrong
-  if (response === 42) {
+  if (response.startsWith('File not found:')) {
     throw new CommandError({
-      type: UNKNOWN_RESPONSE_ERROR,
-      message: `Unknown response\nUsage: ${usage}`
+      type: FILE_NOT_FOUND_ERROR,
+      message: response
     })
   }
   // create data object
-  let data = {}
+  let parts = response.split(' ')
+  let data = { file: args[0], hash: parts[0] }
   // always return data object
   return data
 }
