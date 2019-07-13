@@ -66,8 +66,8 @@ function send (options) {
 // send({ command: 'upload', args: ['pouet.txt', 'Pouet...', '/sd'] })
 // send({ command: 'upload', args: ['prout/pouet.txt', 'Pouet...', 'sd'] })
 // send({ command: 'upload', args: ['/prout/pouet.txt', 'Pouet...', 'sd/'] })
-send({ command: 'upload', args: ['pouet2.txt', 'Pouet...'] })
-// send({ command: 'version' })
+// send({ command: 'upload', args: ['pouet2.txt', 'Pouet...'] })
+send({ command: 'version' })
 
 // send({ command: 'play', args: ['/sd/test-circle-10.gcode'] })
 //   .then(response => {
