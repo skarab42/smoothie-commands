@@ -29,7 +29,8 @@ function send (options) {
 // send({ command: 'config-load', args: ['checksum'] })
 // send({ command: 'config-set', args: ['sd', 'extruder.hotend.steps_per_mm', 42] })
 // send({ command: 'dfu' })
-send({ command: 'echo', args: ['hello smoothie'] })
+// send({ command: 'echo', args: ['hello smoothie'] })
+send({ command: 'fire', args: [10, 5] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -61,8 +62,8 @@ send({ command: 'echo', args: ['hello smoothie'] })
 // configLoadCommand     | DONE
 // configSetCommand      | DONE
 // dfuCommand            | DONE
-// echoCommand           |
-// fireCommand           |
+// echoCommand           | DONE
+// fireCommand           | DONE
 // getCommand            | DONE
 // getFkCommand          |
 // getIkCommand          |
