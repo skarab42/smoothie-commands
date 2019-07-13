@@ -1,23 +1,44 @@
+// https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L866
 import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
 import CommandError from '../CommandError.js'
 
 const command = 'get wcs'
-const usage = 'get wcs <arg1> [<arg2>]'
-const description = 'Command description...'
+const usage = 'get wcs'
+const description = 'Get world coordinate system'
+
+function parseResponse (response) {
+  let lines = response.split('\n')
+  lines = lines.map(line => line.slice(1, -1))
+  let wcs = {
+    current: lines.shift().split(': ').pop()
+  }
+  lines.forEach(line => {
+    let parts = line.split(':')
+    let code = parts.shift().toUpperCase()
+    let coords = parts.shift().split(',')
+    if (code === 'TOOL OFFSET') {
+      code = 'tool'
+    } else if (code === 'PRB') {
+      code = 'prob'
+    }
+    wcs[code] = {
+      x: parseFloat(coords[0]),
+      y: parseFloat(coords[1]),
+      z: parseFloat(coords[2])
+    }
+  })
+  return wcs
+}
 
 function parse ({ args, response }) {
-  console.log('parse:', { command, args, response })
-  // throw an error if something goes wrong
-  if (response === 42) {
+  try {
+    return parseResponse(response)
+  } catch (error) {
     throw new CommandError({
       type: UNKNOWN_RESPONSE_ERROR,
       message: `Unknown response\nUsage: ${usage}`
     })
   }
-  // create data object
-  let data = {}
-  // always return data object
-  return data
 }
 
 export const getWcsCommand = {
