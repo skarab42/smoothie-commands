@@ -49,7 +49,8 @@ function send (options) {
 // send({ command: 'pwd' })
 // send({ command: 'remount' })
 // send({ command: 'reset' })
-send({ command: 'rm', args: ['/sd/test3.txt'] })
+// send({ command: 'rm', args: ['/sd/test3.txt'] })
+send({ command: 'save', args: ['/sd/config-override.txt'] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -106,7 +107,7 @@ send({ command: 'rm', args: ['/sd/test3.txt'] })
 // resetCommand          | DONE
 // resumeCommand         | DONE
 // rmCommand             | DONE
-// saveCommand           |
+// saveCommand           | DONE
 // setTempCommand        |
 // suspendCommand        | DONE
 // switchCommand         |
