@@ -3,7 +3,7 @@ import { UNKNOWN_DEVICE_ERROR } from '../error-types.js'
 import CommandError from '../CommandError.js'
 
 const command = 'set_temp'
-const usage = 'set_temp <device> <temp>'
+const usage = 'set_temp <device> <value>'
 const description = 'Set device temperature'
 
 function parse ({ args, response }) {
