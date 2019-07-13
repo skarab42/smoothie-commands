@@ -3,9 +3,6 @@ A Smoothie firmware commands interface
 
 - Work In Progress...
 
-# Documentation
-http://lautr3k.github.io/smoothie-commands/docs/
-
 # Development
 
 ### Install
@@ -19,6 +16,3 @@ http://lautr3k.github.io/smoothie-commands/docs/
 
 ### Lint code
 `yarn lint`
-
-### Build docs
-`yarn docs`
