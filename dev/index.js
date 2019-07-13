@@ -39,7 +39,8 @@ function send (options) {
 // send({ command: 'get', args: ['temp', 'bed'] })
 // send({ command: 'get', args: ['wcs'] })
 // send({ command: 'help' })
-send({ command: 'load', args: ['/sd/config-override'] })
+// send({ command: 'load', args: ['/sd/config-override'] })
+send({ command: 'ls', args: ['-s', '/sd'] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -83,7 +84,7 @@ send({ command: 'load', args: ['/sd/config-override'] })
 // getWcsCommand         | DONE
 // helpCommand           | DONE
 // loadCommand           | DONE
-// lsCommand             |
+// lsCommand             | DONE
 // md5sumCommand         |
 // memCommand            |
 // mkdirCommand          |
