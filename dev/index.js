@@ -25,7 +25,8 @@ function send (options) {
 // send({ command: 'calc_thermistor', args: ['25,100000.0,150,1655.0,240,269.0'] })
 // send({ command: 'cat', args: ['/sd/test-circle-10.gcode'] })
 // send({ command: 'cd', args: ['/'] })
-send({ command: 'config-get', args: ['sd', 'extruder.hotend.steps_per_mm'] })
+// send({ command: 'config-get', args: ['sd', 'extruder.hotend.steps_per_mm'] })
+send({ command: 'config-load', args: ['checksum'] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
