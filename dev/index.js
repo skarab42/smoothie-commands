@@ -31,8 +31,9 @@ function send (options) {
 // send({ command: 'dfu' })
 // send({ command: 'echo', args: ['hello smoothie'] })
 // send({ command: 'fire', args: [10, 5] })
-// send({ command: 'get', args: ['fk', '-m', '10,15,20'] })
-send({ command: 'get', args: ['ik', '-m', '10,15,20'] })
+// send({ command: 'get', args: ['fk', '10,15,20'] })
+// send({ command: 'get', args: ['ik', '-m', '10,15,20'] })
+send({ command: 'get', args: ['pos'] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -67,8 +68,8 @@ send({ command: 'get', args: ['ik', '-m', '10,15,20'] })
 // echoCommand           | DONE
 // fireCommand           | DONE
 // getCommand            | DONE
-// getFkCommand          |
-// getIkCommand          |
+// getFkCommand          | DONE
+// getIkCommand          | DONE
 // getPosCommand         |
 // getStateCommand       |
 // getStatusCommand      |
