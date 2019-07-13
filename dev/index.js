@@ -48,7 +48,8 @@ function send (options) {
 // send({ command: 'net' })
 // send({ command: 'pwd' })
 // send({ command: 'remount' })
-send({ command: 'reset' })
+// send({ command: 'reset' })
+send({ command: 'rm', args: ['/sd/test3.txt'] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -102,9 +103,9 @@ send({ command: 'reset' })
 // progressCommand       | DONE
 // pwdCommand            | DONE
 // remountCommand        | DONE
-// resetCommand          |
+// resetCommand          | DONE
 // resumeCommand         | DONE
-// rmCommand             |
+// rmCommand             | DONE
 // saveCommand           |
 // setTempCommand        |
 // suspendCommand        | DONE
