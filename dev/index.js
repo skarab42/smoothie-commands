@@ -26,7 +26,8 @@ function send (options) {
 // send({ command: 'cat', args: ['/sd/test-circle-10.gcode'] })
 // send({ command: 'cd', args: ['/'] })
 // send({ command: 'config-get', args: ['sd', 'extruder.hotend.steps_per_mm'] })
-send({ command: 'config-load', args: ['checksum'] })
+// send({ command: 'config-load', args: ['checksum'] })
+send({ command: 'config-set', args: ['sd', 'extruder.hotend.steps_per_mm', 42] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -55,7 +56,7 @@ send({ command: 'config-load', args: ['checksum'] })
 // catCommand            | DONE
 // cdCommand             | DONE
 // configGetCommand      | DONE
-// configLoadCommand     |
+// configLoadCommand     | DONE
 // configSetCommand      |
 // dfuCommand            |
 // echoCommand           |
