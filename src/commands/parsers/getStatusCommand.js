@@ -1,3 +1,4 @@
+// https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L887
 import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
 import CommandError from '../CommandError.js'
 
