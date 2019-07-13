@@ -61,7 +61,12 @@ function send (options) {
 // send({ command: 'test', args: ['jog', 'x', 10, 5, 5000] })
 // send({ command: 'test', args: ['raw', 'x', 200, 200] })
 // send({ command: 'test', args: ['square', 10, 5, 5000] })
-send({ command: 'thermistors' })
+// send({ command: 'thermistors' })
+// send({ command: 'upload', args: ['pouet.txt', 'Pouet...'] })
+// send({ command: 'upload', args: ['pouet.txt', 'Pouet...', '/sd'] })
+// send({ command: 'upload', args: ['prout/pouet.txt', 'Pouet...', 'sd'] })
+// send({ command: 'upload', args: ['/prout/pouet.txt', 'Pouet...', 'sd/'] })
+send({ command: 'upload', args: ['pouet2.txt', 'Pouet...'] })
 // send({ command: 'version' })
 
 // send({ command: 'play', args: ['/sd/test-circle-10.gcode'] })
@@ -70,6 +75,7 @@ send({ command: 'thermistors' })
 //       send({ command: 'resume' })
 //     })
 //   })
+
 // send({ command: 'play', args: ['/sd/test-circle-20.gcode'] })
 //   .then(response => {
 //     let interval = setInterval(function () {
@@ -126,5 +132,5 @@ send({ command: 'thermistors' })
 // testRawCommand        | DONE
 // testSquareCommand     | DONE
 // thermistorsCommand    | DONE
-// uploadCommand         |
+// uploadCommand         | DONE
 // versionCommand        | DONE
