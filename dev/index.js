@@ -30,7 +30,9 @@ function send (options) {
 // send({ command: 'config-set', args: ['sd', 'extruder.hotend.steps_per_mm', 42] })
 // send({ command: 'dfu' })
 // send({ command: 'echo', args: ['hello smoothie'] })
-send({ command: 'fire', args: [10, 5] })
+// send({ command: 'fire', args: [10, 5] })
+// send({ command: 'get', args: ['fk', '-m', '10,15,20'] })
+send({ command: 'get', args: ['ik', '-m', '10,15,20'] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
