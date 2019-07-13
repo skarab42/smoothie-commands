@@ -6,18 +6,28 @@ const usage = 'get state <arg1> [<arg2>]'
 const description = 'Command description...'
 
 function parse ({ args, response }) {
-  console.log('parse:', { command, args, response })
-  // throw an error if something goes wrong
-  if (response === 42) {
+  try {
+    let state = response.trim().slice(1, -1).split(' ')
+    return {
+      modal: state[0],
+      wcs: state[1],
+      planeSelection: state[2],
+      unit: state[3],
+      distanceMode: state[4],
+      pathControl: state[5],
+      programPause: state[6],
+      stopTool: state[7],
+      stopCoolant: state[8],
+      tool: state[9],
+      feedRate: state[10],
+      sValue: state[11]
+    }
+  } catch (error) {
     throw new CommandError({
       type: UNKNOWN_RESPONSE_ERROR,
       message: `Unknown response\nUsage: ${usage}`
     })
   }
-  // create data object
-  let data = {}
-  // always return data object
-  return data
 }
 
 export const getStateCommand = {
