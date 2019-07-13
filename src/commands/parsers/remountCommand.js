@@ -1,23 +1,10 @@
-import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
-import CommandError from '../CommandError.js'
-
+// https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L341
 const command = 'remount'
-const usage = 'remount <arg1> [<arg2>]'
-const description = 'Command description...'
+const usage = 'remount'
+const description = 'Remount SD card'
 
 function parse ({ args, response }) {
-  console.log('parse:', { command, args, response })
-  // throw an error if something goes wrong
-  if (response === 42) {
-    throw new CommandError({
-      type: UNKNOWN_RESPONSE_ERROR,
-      message: `Unknown response\nUsage: ${usage}`
-    })
-  }
-  // create data object
-  let data = {}
-  // always return data object
-  return data
+  return { message: response }
 }
 
 export const remountCommand = {

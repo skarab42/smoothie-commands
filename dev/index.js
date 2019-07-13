@@ -46,7 +46,8 @@ function send (options) {
 // send({ command: 'mkdir', args: ['/sd/test'] })
 // send({ command: 'mv', args: ['/sd/test2.txt', '/sd/test3.txt'] })
 // send({ command: 'net' })
-send({ command: 'pwd' })
+// send({ command: 'pwd' })
+send({ command: 'remount' })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -99,7 +100,7 @@ send({ command: 'pwd' })
 // playCommand           | DONE
 // progressCommand       | DONE
 // pwdCommand            | DONE
-// remountCommand        |
+// remountCommand        | DONE
 // resetCommand          |
 // resumeCommand         | DONE
 // rmCommand             |
