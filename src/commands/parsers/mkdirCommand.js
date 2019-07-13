@@ -1,21 +1,20 @@
-import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
+import { COULD_NOT_CREATE_ERROR } from '../error-types.js'
 import CommandError from '../CommandError.js'
 
 const command = 'mkdir'
-const usage = 'mkdir <arg1> [<arg2>]'
-const description = 'Command description...'
+const usage = 'mkdir <path>'
+const description = 'Create new directory'
 
 function parse ({ args, response }) {
-  console.log('parse:', { command, args, response })
   // throw an error if something goes wrong
-  if (response === 42) {
+  if (response.startsWith('could not create')) {
     throw new CommandError({
-      type: UNKNOWN_RESPONSE_ERROR,
-      message: `Unknown response\nUsage: ${usage}`
+      type: COULD_NOT_CREATE_ERROR,
+      message: response
     })
   }
   // create data object
-  let data = {}
+  let data = { path: args[0] }
   // always return data object
   return data
 }
