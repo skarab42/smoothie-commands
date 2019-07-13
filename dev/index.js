@@ -35,7 +35,8 @@ function send (options) {
 // send({ command: 'get', args: ['ik', '-m', '10,15,20'] })
 // send({ command: 'get', args: ['pos'] })
 // send({ command: 'get', args: ['state'] })
-send({ command: 'get', args: ['status'] })
+// send({ command: 'get', args: ['status'] })
+send({ command: 'get', args: ['temp', 'bed'] })
 
 // send({ command: 'resume' })
 // send({ command: 'suspend' })
@@ -72,10 +73,10 @@ send({ command: 'get', args: ['status'] })
 // getCommand            | DONE
 // getFkCommand          | DONE
 // getIkCommand          | DONE
-// getPosCommand         |
-// getStateCommand       |
-// getStatusCommand      |
-// getTempCommand        |
+// getPosCommand         | DONE
+// getStateCommand       | DONE
+// getStatusCommand      | DONE
+// getTempCommand        | DONE
 // getWcsCommand         |
 // helpCommand           |
 // loadCommand           |
