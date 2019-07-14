@@ -145,7 +145,8 @@ version                                            - Get firmware version
 `yarn dev`
 
 ### Build bundle
-`yarn bundle`
+`yarn bundle:http`
+`yarn bundle:http-tiny`
 
 ### Lint code
 `yarn lint`
