@@ -4456,8 +4456,8 @@ function (_Error) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(RequestError).call(this, message));
     _this.type = type;
     _this.response = response;
+    _this.parentError = parentError;
     _this.name = _this.constructor.name;
-    _this.parentError = parentError || null;
 
     if (typeof Error.captureStackTrace === 'function') {
       Error.captureStackTrace(_assertThisInitialized(_this), _this.constructor);
@@ -5180,7 +5180,7 @@ function upload() {
     file: file,
     name: name,
     path: path,
-    headers: [['X-Filename', fileName]],
+    headers: [['Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8'], ['X-Filename', fileName]],
     url: "http://".concat(address, "/upload"),
     data: file,
     validateStatus: function validateStatus(status) {
@@ -5406,7 +5406,7 @@ function request() {
       _ref$timeout = _ref.timeout,
       timeout = _ref$timeout === void 0 ? 0 : _ref$timeout,
       _ref$headers = _ref.headers,
-      headers = _ref$headers === void 0 ? null : _ref$headers,
+      headers = _ref$headers === void 0 ? [['Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8']] : _ref$headers,
       _ref$onUploadProgress = _ref.onUploadProgress,
       onUploadProgress = _ref$onUploadProgress === void 0 ? null : _ref$onUploadProgress,
       _ref$validateStatus = _ref.validateStatus,

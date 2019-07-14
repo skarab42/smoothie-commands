@@ -29,7 +29,10 @@ export default function upload ({ address, file, name, path = '/sd', ...rest } =
     file,
     name,
     path,
-    headers: [[ 'X-Filename', fileName ]],
+    headers: [
+      ['Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8'],
+      ['X-Filename', fileName]
+    ],
     url: `http://${address}/upload`,
     data: file,
     validateStatus (status) {

@@ -17,7 +17,10 @@ export default function request ({
   url = '/',
   data = null,
   timeout = 0,
-  headers = null,
+  // headers = null,
+  headers = [
+    ['Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8']
+  ],
   onUploadProgress = null,
   validateStatus = status => status >= 200 && status < 300,
   ...userData
