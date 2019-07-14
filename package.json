@@ -5,7 +5,7 @@
   "main": "./dist/bundle.http.js",
   "module": "./src/index.js",
   "scripts": {
-    "dev": "budo ./dev/index.js:bundle.js --dir ./dist --live --open -- -t [ babelify --presets [ @babel/preset-env ] ]",
+    "dev": "budo ./dev/index.js:bundle.js --dir ./dev --live --open -- -t [ babelify --presets [ @babel/preset-env ] ]",
     "bundle:http": "browserify ./src/build-http.js -t [ babelify --presets [ @babel/preset-env ] ] > ./dist/bundle.http.js",
     "bundle:http-tiny": "browserify ./src/build-http.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify > ./dist/bundle.http.tiny.js",
     "lint": "eslint ./src/**"
