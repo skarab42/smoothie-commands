@@ -2,11 +2,12 @@
   "name": "smoothie-commands",
   "version": "2.1.0",
   "description": "A Smoothie firmware (http|serial) commands API",
-  "main": "./dist/bundle.js",
+  "main": "./dist/bundle.http.js",
   "module": "./src/index.js",
   "scripts": {
     "dev": "budo ./dev/index.js:bundle.js --dir ./dist --live --open -- -t [ babelify --presets [ @babel/preset-env ] ]",
-    "bundle": "browserify ./src/index.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify > ./dist/bundle.js",
+    "bundle:http": "browserify ./src/build-http.js -t [ babelify --presets [ @babel/preset-env ] ] > ./dist/bundle.http.js",
+    "bundle:http-tiny": "browserify ./src/build-http.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify > ./dist/bundle.http.tiny.js",
     "lint": "eslint ./src/**"
   },
   "repository": {
