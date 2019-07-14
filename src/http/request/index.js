@@ -1,12 +1,8 @@
-import RequestError from './RequestError'
-import errorTypes from './error-types'
-import request from './request'
-import post from './post'
-import get from './get'
+import request from './request.js'
+import post from './post.js'
+import get from './get.js'
 
 export {
-  RequestError,
-  errorTypes,
   request,
   post,
   get

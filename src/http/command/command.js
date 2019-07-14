@@ -1,9 +1,12 @@
-import { UNSUPPORTED_COMMAND_ERROR, INVALID_PARAMETER_ERROR } from './error-types.js'
 import { errorFactory, responseFactory } from '../request/factory.js'
+import {
+  UNSUPPORTED_COMMAND_ERROR,
+  INVALID_PARAMETER_ERROR
+} from '../../error-types.js'
 import post from '../request/post.js'
 import use from '../../commands/use.js'
 import parse from '../../commands/parse.js'
-import upload from './upload'
+import upload from './upload.js'
 
 export { use }
 

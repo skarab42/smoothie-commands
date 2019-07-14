@@ -1,4 +1,4 @@
-import RequestError from './RequestError'
+import RequestError from '../../errors/RequestError.js'
 
 export function responseFactory ({ params, xhr }) {
   return { xhr, params, data: {}, text: xhr ? xhr.responseText : '' }

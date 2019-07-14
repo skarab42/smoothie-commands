@@ -1,5 +1,13 @@
 import { errorFactory, responseFactory } from './factory.js'
-import * as errorTypes from './error-types'
+import {
+  REQUEST_OPEN_ERROR,
+  FILE_NOT_FOUND_ERROR,
+  SERVER_ERROR,
+  PARALLEL_REQUEST_ERROR,
+  REQUEST_TIMEOUT_ERROR,
+  REQUEST_ABORTED_ERROR,
+  NETWORK_ERROR
+} from '../../error-types.js'
 
 let sent = {}
 
@@ -42,7 +50,7 @@ export default function request ({
       xhr.open(method, url, true)
     } catch (error) {
       throw errorFactory({
-        type: errorTypes.REQUEST_OPEN_ERROR,
+        type: REQUEST_OPEN_ERROR,
         message: error.message,
         params,
         xhr
@@ -63,7 +71,7 @@ export default function request ({
         resolve(responseFactory({ params, xhr }))
       } else {
         reject(errorFactory({
-          type: xhr.status === 404 ? errorTypes.FILE_NOT_FOUND_ERROR : errorTypes.SERVER_ERROR,
+          type: xhr.status === 404 ? FILE_NOT_FOUND_ERROR : SERVER_ERROR,
           message: `Error ${xhr.status}`,
           params,
           xhr
@@ -75,7 +83,7 @@ export default function request ({
     xhr.onerror = function onError () {
       sent[address] = false
       reject(errorFactory({
-        type: errorTypes.NETWORK_ERROR,
+        type: NETWORK_ERROR,
         message: 'Network Error',
         params,
         xhr
@@ -87,7 +95,7 @@ export default function request ({
       if (!xhr) return
       sent[address] = false
       reject(errorFactory({
-        type: errorTypes.REQUEST_ABORTED_ERROR,
+        type: REQUEST_ABORTED_ERROR,
         message: 'Request aborted',
         params,
         xhr
@@ -98,7 +106,7 @@ export default function request ({
     xhr.ontimeout = function onTimeout () {
       sent[address] = false
       reject(errorFactory({
-        type: errorTypes.REQUEST_TIMEOUT_ERROR,
+        type: REQUEST_TIMEOUT_ERROR,
         message: `Timeout of ${timeout}ms exceeded`,
         params,
         xhr
@@ -120,7 +128,7 @@ export default function request ({
     // parallel request prohibited
     if (isSent(address)) {
       reject(errorFactory({
-        type: errorTypes.PARALLEL_REQUEST_ERROR,
+        type: PARALLEL_REQUEST_ERROR,
         message: 'Parallel request prohibited. Please wait for the end of a request before sending another.',
         params,
         xhr

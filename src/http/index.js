@@ -1,11 +1,7 @@
-import errorTypes from './error-types'
-import request from './request'
-import command from './command'
-import parse from '../commands'
+import * as errorTypes from '../error-types.js'
 
-export {
-  errorTypes,
-  request,
-  command,
-  parse
-}
+export * from './request/index.js'
+export * from './command/index.js'
+export * from '../commands/index.js'
+
+export { errorTypes }

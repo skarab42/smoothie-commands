@@ -1,4 +1,4 @@
-import { UNDEFINED_ERROR } from './error-types'
+import { UNDEFINED_ERROR } from '../error-types.js'
 
 export default class RequestError extends Error {
   constructor ({ message, response, type = UNDEFINED_ERROR }) {

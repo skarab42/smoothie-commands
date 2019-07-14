@@ -1,9 +1,9 @@
-import errorTypes from './error-types'
-import command from './command'
+import command from './command.js'
+import upload from './upload.js'
 
 export {
-  errorTypes,
-  command
+  command,
+  upload
 }
 
 export default command

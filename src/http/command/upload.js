@@ -1,6 +1,6 @@
 import { uploadCommand } from '../../commands/parsers/uploadCommand.js'
 import { errorFactory } from '../request/factory.js'
-import post from '../request/post'
+import post from '../request/post.js'
 
 export default function upload ({ address, file, name, path = '/sd', ...rest } = {}) {
   // file is a string, make a Blob
