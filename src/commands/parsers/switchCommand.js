@@ -1,6 +1,6 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L957
-import UnknownResponseError from '../errors/UnknownResponseError.js'
-import UnknownDeviceError from '../errors/UnknownDeviceError.js'
+import UnknownResponseError from '../../errors/UnknownResponseError.js'
+import UnknownDeviceError from '../../errors/UnknownDeviceError.js'
 
 const command = 'switch'
 const usage = 'switch <name> [onf|off]'

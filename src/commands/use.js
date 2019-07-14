@@ -1,4 +1,4 @@
-import InvalidCommandError from './errors/InvalidCommandError.js'
+import InvalidCommandError from '../errors/InvalidCommandError.js'
 
 export const usedCommands = {}
 

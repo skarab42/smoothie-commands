@@ -1,4 +1,4 @@
-import UnsupportedSubcommandError from '../errors/UnsupportedSubcommandError.js'
+import UnsupportedSubcommandError from '../../errors/UnsupportedSubcommandError.js'
 import { testSquareCommand } from './testSquareCommand.js'
 import { testCircleCommand } from './testCircleCommand.js'
 import { testJogCommand } from './testJogCommand.js'

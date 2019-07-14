@@ -1,6 +1,6 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L466
 // https://github.com/Smoothieware/Smoothieware/blob/d82d66f550ce6bdd7f33e8f4998ac6d963fd7376/src/libs/Network/uip/webserver/httpd.c#L340
-import CouldNotUploadError from '../errors/CouldNotUploadError.js'
+import CouldNotUploadError from '../../errors/CouldNotUploadError.js'
 import fileFactory from '../fileFactory.js'
 
 const command = 'upload'

@@ -1,4 +1,4 @@
-import UnsupportedSubcommandError from '../errors/UnsupportedSubcommandError.js'
+import UnsupportedSubcommandError from '../../errors/UnsupportedSubcommandError.js'
 import { getFkCommand } from './getFkCommand.js'
 import { getIkCommand } from './getIkCommand.js'
 import { getPosCommand } from './getPosCommand.js'

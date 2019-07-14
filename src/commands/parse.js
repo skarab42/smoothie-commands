@@ -1,4 +1,4 @@
-import UnsupportedParserError from './errors/UnsupportedParserError.js'
+import UnsupportedParserError from '../errors/UnsupportedParserError.js'
 import { usedCommands } from './use.js'
 
 export default function parse ({ command, response, args }) {

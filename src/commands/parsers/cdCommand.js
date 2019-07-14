@@ -1,6 +1,6 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L375
-import UnknownResponseError from '../errors/UnknownResponseError.js'
-import CouldNotOpenError from '../errors/CouldNotOpenError.js'
+import UnknownResponseError from '../../errors/UnknownResponseError.js'
+import CouldNotOpenError from '../../errors/CouldNotOpenError.js'
 
 const command = 'cd'
 const usage = 'cd <path>'

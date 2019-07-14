@@ -1,4 +1,4 @@
-import CouldNotCreateError from '../errors/CouldNotCreateError.js'
+import CouldNotCreateError from '../../errors/CouldNotCreateError.js'
 
 const command = 'mkdir'
 const usage = 'mkdir <path>'

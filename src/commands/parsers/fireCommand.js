@@ -1,8 +1,8 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L286
 // https://github.com/Smoothieware/Smoothieware/blob/0faa088fe1a2207f6c0b99ec7abccfbd1162f730/src/modules/tools/laser/Laser.cpp#L136
-import UnknownResponseError from '../errors/UnknownResponseError.js'
-import MinimalDurationError from '../errors/MinimalDurationError.js'
-import NoLaserModuleError from '../errors/NoLaserModuleError.js'
+import UnknownResponseError from '../../errors/UnknownResponseError.js'
+import MinimalDurationError from '../../errors/MinimalDurationError.js'
+import NoLaserModuleError from '../../errors/NoLaserModuleError.js'
 
 const command = 'fire'
 const usage = 'fire <power|off|status> [duration]'
