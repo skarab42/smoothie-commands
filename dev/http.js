@@ -62,11 +62,10 @@ function send (options) {
 // send({ command: 'test', args: ['raw', 'x', 200, 200] })
 // send({ command: 'test', args: ['square', 10, 5, 5000] })
 // send({ command: 'thermistors' })
+
+// send({ command: 'upload', args: ['/sd', 'pouet.txt', 'Pouet...'] })
 // send({ command: 'upload', args: ['pouet.txt', 'Pouet...'] })
-// send({ command: 'upload', args: ['pouet.txt', 'Pouet...', '/sd'] })
-// send({ command: 'upload', args: ['prout/pouet.txt', 'Pouet...', 'sd'] })
-// send({ command: 'upload', args: ['pouet.txt', 'Pouet...', 'sd/'] })
-// send({ command: 'upload', args: ['pouet2.txt', 'Pouet...'] })
+
 // send({ command: 'version', timeout: 1000 })
 send({ command: 'version', timeout: 1000 })
 
