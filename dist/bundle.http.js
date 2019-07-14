@@ -5036,10 +5036,26 @@ function command() {
 
 
   if (command === 'upload') {
+    var path = args[0] || undefined;
+    var name = args[1] || undefined;
+    var file = args[2] || undefined;
+    var slice = 3;
+
+    if (args.length === 2) {
+      file = name;
+      name = path;
+      path = undefined;
+      slice = 2;
+    }
+
+    if (typeof file === 'string') {
+      file = args.slice(slice).join(' ');
+    }
+
     return (0, _upload["default"])(_objectSpread({}, params, {
-      name: args[0] || undefined,
-      file: args[1] || undefined,
-      path: args[2] || undefined
+      name: name,
+      file: file,
+      path: path
     }));
   } // END SPECIALS CASES ---------------
   // sent the request

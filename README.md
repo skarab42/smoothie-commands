@@ -132,7 +132,7 @@ test jog <axis> <distance> <iterations> [feedrate] - Jogs back and forth from or
 test raw <axis> <steps> <speed>                    - Issues raw steps to the specified axis
 test square <size> <iterations> [feedrate]         - Draws a square from origin
 thermistors                                        - Get predefined thermistors
-upload <file>                                      - Saves a stream of text to the named file
+upload [path] <filename> <...contents>             - Saves a stream of text to the named file
 version                                            - Get firmware version
 ```
 

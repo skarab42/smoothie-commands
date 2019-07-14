@@ -31,12 +31,20 @@ export default function command ({ address, command, args = [], ...rest } = {}) 
 
   // upload command
   if (command === 'upload') {
-    return upload({
-      ...params,
-      name: args[0] || undefined,
-      file: args[1] || undefined,
-      path: args[2] || undefined
-    })
+    let path = args[0] || undefined
+    let name = args[1] || undefined
+    let file = args[2] || undefined
+    let slice = 3
+    if (args.length === 2) {
+      file = name
+      name = path
+      path = undefined
+      slice = 2
+    }
+    if (typeof file === 'string') {
+      file = args.slice(slice).join(' ')
+    }
+    return upload({ ...params, name, file, path })
   }
 
   // END SPECIALS CASES ---------------
