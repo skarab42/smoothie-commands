@@ -1,0 +1,79 @@
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
+#header {
+  background-color: #923baf;
+}
+
+#header h1 {
+  color: #eee;
+  padding: 25px;
+}
+
+#form {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ccc;
+}
+
+#form > * {
+  color: #333;
+  flex-grow: 1;
+  padding: 25px;
+  font-size: 1.5em;
+  border-left: 1px #aaa solid;
+  background-color: #ccc;
+}
+
+#form button {
+  color: #923baf;
+  font-weight: bold;
+}
+
+#form button:disabled {
+  color: #ddd;
+  cursor: not-allowed;
+}
+
+#console {
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: #fff;
+  justify-content: center;
+}
+
+#console > * {
+  flex: 1 1 auto;
+  display: flex;
+  font-size: 1.5em;
+  border-bottom: 1px #aaa solid;
+}
+
+#console pre {
+  flex: 1 1 auto;
+  padding: 25px;
+  width: 50%;
+}
+
+#console pre.request {
+  background-color: #eee;
+}
+
+#console pre.error {
+  color: #eee;
+  background-color: #c14141;
+}
+
+.drop-shadow {
+  filter: drop-shadow(0 0 5px #333);
+}
