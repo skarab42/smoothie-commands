@@ -5,8 +5,8 @@ export default class RequestError extends Error {
     super(message)
     this.type = type
     this.response = response
+    this.parentError = parentError
     this.name = this.constructor.name
-    this.parentError = parentError || null
     if (typeof Error.captureStackTrace === 'function') {
       Error.captureStackTrace(this, this.constructor)
     } else {
