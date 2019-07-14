@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { KILL_ERROR } from './types.js'
+import { KILL_ERROR } from '../error-types.js'
 
 export default class KillError extends CommandError {
   constructor () {

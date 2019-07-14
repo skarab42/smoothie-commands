@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { CURRENTLY_PLAYING_ERROR } from './types.js'
+import { CURRENTLY_PLAYING_ERROR } from '../error-types.js'
 
 export default class CurrentlyPlayingError extends CommandError {
   constructor () {

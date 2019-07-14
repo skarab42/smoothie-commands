@@ -1,5 +1,6 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L918
 import UnknownResponseError from '../errors/UnknownResponseError.js'
+import InvalidArgumentsError from '../errors/InvalidArgumentsError.js'
 
 const command = 'calc_thermistor'
 const usage = 'calc_thermistor <T1,R1,T2,R2,T3,R3>'
@@ -11,7 +12,7 @@ const savedPattern = /Setting Thermistor/
 function parse ({ args, response }) {
   // throw an error if something goes wrong
   if (response.startsWith('Usage:')) {
-    throw new UnknownResponseError(usage)
+    throw new InvalidArgumentsError(args, usage)
   }
   // test pattern
   const matches = response.match(coefficientsPattern)

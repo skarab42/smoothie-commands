@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { UNDEFINED_SETTING_ERROR } from './types.js'
+import { UNDEFINED_SETTING_ERROR } from '../error-types.js'
 
 export default class UndefinedSettingError extends CommandError {
   constructor (setting, usage) {

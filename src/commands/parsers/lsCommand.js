@@ -17,28 +17,32 @@ function sortByPath (files) {
   })
 }
 
+function parseResponse (args, response) {
+  let path = args[0]
+  let getSize = args[0] === '-s'
+  if (getSize) {
+    path = args[1]
+  }
+  let files = response.split('\n').filter(line => line.length).map(line => {
+    line = line.trim()
+    let file = null
+    if (line.endsWith('/')) {
+      file = folderFactory({ path, line })
+    } else {
+      file = fileFactory({ path, line, getSize })
+    }
+    return file
+  })
+  return sortByPath(files)
+}
+
 function parse ({ args, response }) {
   // throw an error if something goes wrong
   if (response.startsWith('Could not open')) {
     throw new CouldNotOpenError(args[0] || null)
   }
   try {
-    let path = args[0]
-    let getSize = args[0] === '-s'
-    if (getSize) {
-      path = args[1]
-    }
-    let files = response.split('\n').filter(line => line.length).map(line => {
-      line = line.trim()
-      let file = null
-      if (line.endsWith('/')) {
-        file = folderFactory({ path, line })
-      } else {
-        file = fileFactory({ path, line, getSize })
-      }
-      return file
-    })
-    return sortByPath(files)
+    return parseResponse(args, response)
   } catch (error) {
     throw new UnknownResponseError(usage, error)
   }

@@ -20,7 +20,7 @@ function send (options) {
     })
 }
 
-// send({ command: 'dabort' })
+// send({ command: 'abort' })
 // send({ command: 'break' })
 // send({ command: 'calc_thermistor', args: ['100000.0,150,1655.0,240,269.0'] })
 // send({ command: 'cat', args: ['/sd/test-circle-10.gcode'] })
@@ -67,7 +67,7 @@ function send (options) {
 // send({ command: 'upload', args: ['prout/pouet.txt', 'Pouet...', 'sd'] })
 // send({ command: 'upload', args: ['/prout/pouet.txt', 'Pouet...', 'sd/'] })
 // send({ command: 'upload', args: ['pouet2.txt', 'Pouet...'] })
-// send({ command: 'version' })
+send({ command: 'version' })
 
 // send({ command: 'play', args: ['/sd/test-circle-10.gcode'] })
 //   .then(response => {

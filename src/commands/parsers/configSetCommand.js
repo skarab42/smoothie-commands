@@ -1,23 +1,24 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L277
 // https://github.com/Smoothieware/Smoothieware/blob/0faa088fe1a2207f6c0b99ec7abccfbd1162f730/src/modules/utils/configurator/Configurator.cpp#L68
-import UnknownResponseError from '../errors/UnknownResponseError.js'
+import InvalidArgumentsError from '../errors/InvalidArgumentsError.js'
 import UndefinedSettingError from '../errors/UndefinedSettingError.js'
 import NotEnoughSpaceError from '../errors/NotEnoughSpaceError.js'
+import UnknownResponseError from '../errors/UnknownResponseError.js'
 
 const command = 'config-set'
 const usage = 'config-set <source> <setting> <value>'
 const description = 'Set value to the specified source setting'
 
 function parse ({ args, response }) {
-  let source = args[0]
-  let setting = args[1]
-  // let value = args[2]
+  let source = args[0] || null
+  let setting = args[1] || null
+  // let value = args[2] || null
   // throw an error if something goes wrong
   if (response.startsWith('Usage:')) {
-    throw new UnknownResponseError(usage)
+    throw new InvalidArgumentsError(args, usage)
   }
   if (response.endsWith('source does not exist')) {
-    throw new UndefinedSettingError(source, usage)
+    throw new UndefinedSettingError(`${source}:${setting}`, usage)
   }
   if (response.endsWith('not enough space')) {
     throw new NotEnoughSpaceError(`${source}:${setting}`)

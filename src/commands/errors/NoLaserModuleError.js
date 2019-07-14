@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { NO_LASER_MODULE_ERROR } from './types.js'
+import { NO_LASER_MODULE_ERROR } from '../error-types.js'
 
 export default class NoLaserModuleError extends CommandError {
   constructor () {

@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { NOT_SUSPENDED_ERROR } from './types.js'
+import { NOT_SUSPENDED_ERROR } from '../error-types.js'
 
 export default class NotSuspendedError extends CommandError {
   constructor () {

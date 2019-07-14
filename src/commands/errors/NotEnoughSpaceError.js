@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { NOT_ENOUGH_SPACE_ERROR } from './types.js'
+import { NOT_ENOUGH_SPACE_ERROR } from '../error-types.js'
 
 export default class NotEnoughSpaceError extends CommandError {
   constructor (what) {

@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { UNKNOWN_RESPONSE_ERROR } from './types.js'
+import { UNKNOWN_RESPONSE_ERROR } from '../error-types.js'
 
 export default class UnknownResponseError extends CommandError {
   constructor (usage, error) {

@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { NO_HEATERS_FOUND_ERROR } from './types.js'
+import { NO_HEATERS_FOUND_ERROR } from '../error-types.js'
 
 export default class NotHeatersFoundError extends CommandError {
   constructor () {

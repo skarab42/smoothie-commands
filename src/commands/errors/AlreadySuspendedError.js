@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { ALREADY_SUSPENDED_ERROR } from './types.js'
+import { ALREADY_SUSPENDED_ERROR } from '../error-types.js'
 
 export default class AlreadySuspendedError extends CommandError {
   constructor () {

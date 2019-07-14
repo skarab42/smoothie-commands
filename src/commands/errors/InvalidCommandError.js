@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { INVALID_COMMAND_ERROR } from './types.js'
+import { INVALID_COMMAND_ERROR } from '../error-types.js'
 
 export default class InvalidCommandError extends CommandError {
   constructor () {

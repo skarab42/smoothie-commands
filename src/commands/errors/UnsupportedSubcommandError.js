@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { UNSUPPORTED_SUBCOMMAND_ERROR } from './types.js'
+import { UNSUPPORTED_SUBCOMMAND_ERROR } from '../error-types.js'
 
 export default class UnsupportedSubcommandError extends CommandError {
   constructor (subcommand, usage) {

@@ -1,4 +1,5 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L809
+import InvalidArgumentsError from '../errors/InvalidArgumentsError.js'
 import UnknownResponseError from '../errors/UnknownResponseError.js'
 
 const command = 'get ik'
@@ -8,7 +9,7 @@ const description = 'Do inverse kinematics on the given cartesian position and d
 function parse ({ args, response }) {
   // throw an error if something goes wrong
   if (response.startsWith('error:usage:')) {
-    throw new UnknownResponseError(usage)
+    throw new InvalidArgumentsError(args, usage)
   }
   // test
   const matches = response.match(/X ([0-9.]+), Y ([0-9.]+), Z ([0-9.]+)/)

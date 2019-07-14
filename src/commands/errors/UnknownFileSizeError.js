@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { UNKNOWN_FILE_SIZE_ERROR } from './types.js'
+import { UNKNOWN_FILE_SIZE_ERROR } from '../error-types.js'
 
 export default class UnknownFileSizeError extends CommandError {
   constructor () {

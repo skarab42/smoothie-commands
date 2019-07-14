@@ -1,4 +1,5 @@
 // https://github.com/Smoothieware/Smoothieware/blob/9e5477518b1c85498a68e81be894faea45d6edca/src/modules/utils/simpleshell/SimpleShell.cpp#L1009
+import UnknownResponseError from '../errors/UnknownResponseError.js'
 import FileNotFoundError from '../errors/FileNotFoundError.js'
 
 const command = 'md5sum'
@@ -12,6 +13,9 @@ function parse ({ args, response }) {
   }
   // always return data object
   const parts = response.split(' ')
+  if (parts.length !== 2) {
+    throw new UnknownResponseError(usage)
+  }
   return { file: args[0], hash: parts[0] }
 }
 

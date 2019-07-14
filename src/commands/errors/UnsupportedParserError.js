@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { UNSUPPORTED_PARSER_ERROR } from './types.js'
+import { UNSUPPORTED_PARSER_ERROR } from '../error-types.js'
 
 export default class UnsupportedParserError extends CommandError {
   constructor (command) {

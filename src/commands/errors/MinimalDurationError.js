@@ -1,5 +1,5 @@
 import CommandError from './CommandError.js'
-import { MINIMAL_DURATION_ERROR } from './types.js'
+import { MINIMAL_DURATION_ERROR } from '../error-types.js'
 
 export default class MinimalDurationError extends CommandError {
   constructor (duration) {

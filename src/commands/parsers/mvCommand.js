@@ -8,7 +8,7 @@ const description = 'Move a file from source to target path'
 function parse ({ args, response }) {
   // throw an error if something goes wrong
   if (response.startsWith('Could not rename')) {
-    throw new CouldNotMoveError(args[0] || null)
+    throw new CouldNotMoveError(args[0] || null, args[1] || null)
   }
   // create and return data object
   return { source: args[0], target: args[1] }
