@@ -7,20 +7,25 @@ Sent commands to smoothie firmware hardware over HTTP or Serial connexion and ge
 
 > **Table of contents**
 >
-> * [HTTP interface](#http-interface)
-> * [Serial interface](#serial-interface)
+> * [Online demo](#online-demo)
+> * [Usages](#usages)
+>   * [HTTP interface](#http-interface)
+>   * [Serial interface](#serial-interface)
 > * [Error types](#error-types)
->     - [CommandError](#commanderror)
->     - [RequestError](#requesterror)
+>   * [CommandError](#commanderror)
+>   * [RequestError](#requesterror)
 > * [Supported commands](#supported-commands)
 > * [Development](#development)
->     - [Install](#install)
->     - [Run dev server](#run-dev-server)
->     - [Build bundle](#build-bundle)
->     - [Lint code](#lint-code)
+>   * [Install](#install)
+>   * [Run dev server](#run-dev-server)
+>   * [Build bundle](#build-bundle)
+>   * [Lint code](#lint-code)
 
+# Online demo
+- [Http interface](https://onlfait.github.io/smoothie-commands/demo/)
 
-# HTTP interface
+# Usages
+## HTTP interface
 ```js
 import { command } from 'smoothie-commands/http'
 
@@ -43,11 +48,11 @@ command({
   })
 ```
 
-# Serial interface
+## Serial interface
 - Work In Progress...
 
 # Error types
-### CommandError
+## CommandError
 ```
 ALREADY_SUSPENDED_ERROR
 COULD_NOT_CREATE_ERROR
@@ -76,7 +81,7 @@ UNSUPPORTED_PARSER_ERROR
 UNSUPPORTED_SUBCOMMAND_ERROR
 ```
 
-### RequestError
+## RequestError
 ```
 NETWORK_ERROR
 REQUEST_ABORTED_ERROR
@@ -137,16 +142,17 @@ version                                            - Get firmware version
 ```
 
 # Development
-
-### Install
+## Install
 `yarn install`
 
-### Run dev server
+## Run dev server
 `yarn dev`
 
-### Build bundle
-`yarn bundle:http`
-`yarn bundle:http-tiny`
+## Build bundle
+```
+yarn bundle:http
+yarn bundle:http-tiny
+```
 
-### Lint code
+## Lint code
 `yarn lint`
