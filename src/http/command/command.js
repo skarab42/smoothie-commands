@@ -1,4 +1,5 @@
-import { errorFactory, responseFactory } from '../request/factory.js'
+import errorFactory from '../request/errorFactory.js'
+import responseFactory from '../request/responseFactory.js'
 import {
   UNSUPPORTED_COMMAND_ERROR,
   INVALID_PARAMETER_ERROR

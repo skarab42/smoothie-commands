@@ -1,4 +1,5 @@
-import { errorFactory, responseFactory } from './factory.js'
+import errorFactory from '../request/errorFactory.js'
+import responseFactory from '../request/responseFactory.js'
 import {
   REQUEST_OPEN_ERROR,
   FILE_NOT_FOUND_ERROR,
