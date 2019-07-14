@@ -5,7 +5,7 @@ export default class UnsupportedSubcommandError extends CommandError {
   constructor (subcommand, usage) {
     super({
       type: UNSUPPORTED_SUBCOMMAND_ERROR,
-      message: `Unsupported subcommand [${subcommand}]\nUsage: ${usage}`
+      message: `Unsupported subcommand [${subcommand}].\nUsage: ${usage}`
     })
   }
 }

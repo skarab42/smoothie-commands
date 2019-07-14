@@ -5,7 +5,7 @@ export default class MinimalDurationError extends CommandError {
   constructor (duration) {
     super({
       type: MINIMAL_DURATION_ERROR,
-      message: `Minimal duration is ${duration}ms.`
+      message: `Minimal duration is [${duration}] ms.`
     })
   }
 }
