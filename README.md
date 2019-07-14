@@ -1,5 +1,5 @@
 # smoothie-commands
-A Smoothie firmware commands interface
+A Smoothie firmware (http|serial) commands API
 
 Sent commands to smoothie firmware hardware over HTTP or Serial connexion and get in returns some structured data.
 
