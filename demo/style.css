@@ -55,6 +55,7 @@ button {
 #console > * {
   flex: 1 1 auto;
   display: flex;
+  flex-wrap: wrap;
   font-size: 1.5em;
   border-bottom: 1px #aaa solid;
 }
@@ -62,7 +63,7 @@ button {
 #console pre {
   flex: 1 1 auto;
   padding: 25px;
-  width: 50%;
+  width: auto;
 }
 
 #console pre.request {
