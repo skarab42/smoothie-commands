@@ -1,14 +1,10 @@
-import errorFactory from '../request/errorFactory.js'
 import responseFactory from '../request/responseFactory.js'
-import {
-  REQUEST_OPEN_ERROR,
-  FILE_NOT_FOUND_ERROR,
-  SERVER_ERROR,
-  PARALLEL_REQUEST_ERROR,
-  REQUEST_TIMEOUT_ERROR,
-  REQUEST_ABORTED_ERROR,
-  NETWORK_ERROR
-} from '../../error-types.js'
+import RequestOpenError from '../../errors/RequestOpenError.js'
+import RequestTimeoutError from '../../errors/RequestTimeoutError.js'
+import RequestAbortedError from '../../errors/RequestAbortedError.js'
+import ParallelRequestError from '../../errors/ParallelRequestError.js'
+import NetworkError from '../../errors/NetworkError.js'
+import ServerError from '../../errors/ServerError.js'
 
 let sent = {}
 
@@ -23,6 +19,7 @@ export default function request ({
   timeout = 0,
   headers = null,
   onUploadProgress = null,
+  validateStatus = status => status >= 200 && status < 300,
   ...userData
 } = {}) {
   // force http protocol
@@ -37,7 +34,8 @@ export default function request ({
     userData,
     timeout,
     headers,
-    onUploadProgress
+    onUploadProgress,
+    validateStatus
   }
   // create and return a Promise
   return new Promise((resolve, reject) => {
@@ -50,12 +48,8 @@ export default function request ({
     try {
       xhr.open(method, url, true)
     } catch (error) {
-      throw errorFactory({
-        type: REQUEST_OPEN_ERROR,
-        message: error.message,
-        params,
-        xhr
-      })
+      const response = responseFactory({ params, xhr })
+      return reject(new RequestOpenError({ message: error.message, response }))
     }
     // set timeout
     xhr.timeout = timeout
@@ -68,50 +62,34 @@ export default function request ({
       if (!xhr || xhr.readyState !== 4) return
       if (xhr.status === 0) return // => onError
       sent[address] = false
-      if (xhr.status >= 200 && xhr.status < 300) {
+      if (validateStatus(xhr.status)) {
         resolve(responseFactory({ params, xhr }))
       } else {
-        reject(errorFactory({
-          type: xhr.status === 404 ? FILE_NOT_FOUND_ERROR : SERVER_ERROR,
-          message: `Error ${xhr.status}`,
-          params,
-          xhr
-        }))
+        const response = responseFactory({ params, xhr })
+        reject(new ServerError({ status: xhr.status, response }))
       }
       xhr = null
     }
     // on network errors
     xhr.onerror = function onError () {
       sent[address] = false
-      reject(errorFactory({
-        type: NETWORK_ERROR,
-        message: 'Network Error',
-        params,
-        xhr
-      }))
+      const response = responseFactory({ params, xhr })
+      reject(new NetworkError({ response }))
       xhr = null
     }
     // on browser abord
     xhr.onabort = function onAbort () {
       if (!xhr) return
       sent[address] = false
-      reject(errorFactory({
-        type: REQUEST_ABORTED_ERROR,
-        message: 'Request aborted',
-        params,
-        xhr
-      }))
+      const response = responseFactory({ params, xhr })
+      reject(new RequestAbortedError({ response }))
       xhr = null
     }
     // on timeout
     xhr.ontimeout = function onTimeout () {
       sent[address] = false
-      reject(errorFactory({
-        type: REQUEST_TIMEOUT_ERROR,
-        message: `Timeout of ${timeout}ms exceeded`,
-        params,
-        xhr
-      }))
+      const response = responseFactory({ params, xhr })
+      reject(new RequestTimeoutError({ timeout, response }))
       xhr = null
     }
     // on upload progress
@@ -128,12 +106,8 @@ export default function request ({
     }
     // parallel request prohibited
     if (isSent(address)) {
-      reject(errorFactory({
-        type: PARALLEL_REQUEST_ERROR,
-        message: 'Parallel request prohibited. Please wait for the end of a request before sending another.',
-        params,
-        xhr
-      }))
+      const response = responseFactory({ params, xhr })
+      reject(new ParallelRequestError({ response }))
       return
     }
     sent[address] = true

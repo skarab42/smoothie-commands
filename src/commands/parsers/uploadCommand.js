@@ -12,7 +12,7 @@ function parse ({ args, response }) {
   const file = args[1]
   const path = args[2]
   if (!response.startsWith('OK')) {
-    throw new CouldNotUploadError(`${path}/${file}`)
+    throw new CouldNotUploadError(`${path}/${name}`)
   }
   return fileFactory({ path, line: `${name} ${file.size}`, getSize: true })
 }

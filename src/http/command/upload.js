@@ -1,5 +1,5 @@
 import { uploadCommand } from '../../commands/parsers/uploadCommand.js'
-import { errorFactory } from '../request/factory.js'
+import RequestError from '../../errors/RequestError.js'
 import post from '../request/post.js'
 
 export default function upload ({ address, file, name, path = '/sd', ...rest } = {}) {
@@ -31,7 +31,10 @@ export default function upload ({ address, file, name, path = '/sd', ...rest } =
     path,
     headers: [[ 'X-Filename', fileName ]],
     url: `http://${address}/upload`,
-    data: file
+    data: file,
+    validateStatus (status) {
+      return (status >= 200 && status < 300) || (status === 503)
+    }
   }
   // post upload
   return post(params).then(response => {
@@ -42,10 +45,11 @@ export default function upload ({ address, file, name, path = '/sd', ...rest } =
         response: response.text.trim()
       })
     } catch (error) {
-      throw errorFactory({
-        ...response,
+      throw new RequestError({
         type: error.type || error.name,
-        message: error.message
+        message: error.message,
+        parentError: error,
+        response
       })
     }
     return response

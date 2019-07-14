@@ -1,9 +1,6 @@
-import errorFactory from '../request/errorFactory.js'
+import UnsupportedCommandError from '../../errors/UnsupportedCommandError.js'
+import RequestError from '../../errors/RequestError.js'
 import responseFactory from '../request/responseFactory.js'
-import {
-  UNSUPPORTED_COMMAND_ERROR,
-  INVALID_PARAMETER_ERROR
-} from '../../error-types.js'
 import post from '../request/post.js'
 import use from '../../commands/use.js'
 import parse from '../../commands/parse.js'
@@ -21,48 +18,43 @@ export default function command ({ address, command, args = [], ...rest } = {}) 
     url: `http://${address}/command`,
     data: `${command}${argsString}\n`
   }
-  // SPECIALS CASES
+
+  // SPECIALS CASES ---------------------
+
+  // break command
   if (command === 'break') {
     // break is immediate and never return
     post(params) // send break command, and return a fake response
     let response = responseFactory({ params, xhr: new XMLHttpRequest() })
     return Promise.resolve({ ...response, data: { message: 'Entering MRI debug mode...' } })
   }
+
+  // upload command
   if (command === 'upload') {
-    const uploadParams = {
+    return upload({
       ...params,
       name: args[0] || undefined,
       file: args[1] || undefined,
       path: args[2] || undefined
-    }
-    if (args.length < 2) {
-      let response = responseFactory({ params: uploadParams, xhr: new XMLHttpRequest() })
-      return Promise.reject(errorFactory({
-        ...response,
-        type: INVALID_PARAMETER_ERROR,
-        message: `Invalid parameter\nUsage: upload <name> <file> [path]`
-      }))
-    }
-    return upload(uploadParams)
+    })
   }
-  // END SPECIALS CASES
+
+  // END SPECIALS CASES ---------------
+
   // sent the request
   return post(params).then(response => {
-    response.text = response.text.trim()
-    if (response.text.startsWith('error:Unsupported command')) {
-      throw errorFactory({
-        ...response,
-        type: UNSUPPORTED_COMMAND_ERROR,
-        message: `Unsupported command [ ${command} ]`
-      })
-    }
     try {
+      response.text = response.text.trim()
+      if (response.text.startsWith('error:Unsupported command')) {
+        throw new UnsupportedCommandError(command)
+      }
       response.data = parse({ command, args, response: response.text.trim() })
     } catch (error) {
-      throw errorFactory({
-        ...response,
+      throw new RequestError({
         type: error.type || error.name,
-        message: error.message
+        message: error.message,
+        parentError: error,
+        response
       })
     }
     return response
