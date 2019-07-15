@@ -8,6 +8,7 @@ Sent commands to smoothie firmware hardware over HTTP or Serial connexion and ge
 > **Table of contents**
 >
 > * [Online demo](#online-demo)
+> * [Install](#install)
 > * [Usages](#usages)
 >   * [HTTP interface](#http-interface)
 >     - [ES6 module](#es6-module)
@@ -29,6 +30,9 @@ Sent commands to smoothie firmware hardware over HTTP or Serial connexion and ge
 >     - [Lint code](#lint-code)
 # Online demo
 - [Http interface](http://smoothie-commands.surge.sh/)
+
+# Install
+`> yarn add smoothie-commands`
 
 # Usages
 ## HTTP interface
@@ -233,28 +237,27 @@ version                                            - Get firmware version
 
 # Development
 ### Install
-`yarn install`
+`> yarn install`
 
 ### Run dev server
-`yarn serv:dev`
+`> yarn serv:dev`
 
 ### Run demo server
-`yarn serv:demo`
+`> yarn serv:demo`
 
 ### Build bundle
-```
-yarn bundle:http
-yarn bundle:http:tiny
-```
+`> yarn bundle:http`
+
+`> yarn bundle:http:tiny`
 
 ### Build demo
-`yarn build:demo`
+`> yarn build:demo`
 
 ### Publish demo
-`yarn surge:demo`
+`> yarn surge:demo`
 
 ### Build all
-`yarn build`
+`> yarn build`
 
 ### Lint code
-`yarn lint`
+`> yarn lint`
