@@ -9,8 +9,10 @@
     "serv:demo": "budo ./src/build-http.js:bundle.js --dir ./demo --live --open -- -t babelify",
     "bundle:http": "browserify ./src/build-http.js -t babelify > ./dist/bundle.http.js",
     "bundle:http:tiny": "browserify ./src/build-http.js -t babelify -p tinyify > ./dist/bundle.http.tiny.js",
+    "bundle:all": "yarn bundle:http && yarn bundle:http:tiny",
     "build:demo": "browserify ./src/build-http.js -t babelify -p tinyify > ./demo/bundle.js",
     "surge:demo": "yarn build:demo && cd demo && surge --domain smoothie-commands.surge.sh",
+    "publish": "yarn build:all && surge:demo",
     "lint:src": "eslint ./src/**"
   },
   "repository": {
