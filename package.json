@@ -1,6 +1,6 @@
 {
   "name": "smoothie-commands",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "A Smoothie firmware (http|serial) commands API",
   "main": "./dist/bundle.http.js",
   "module": "./src/index.js",
