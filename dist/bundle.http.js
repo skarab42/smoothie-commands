@@ -7,7 +7,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 window.smoothieCommands = http;
 
-},{"./http/index.js":91}],2:[function(require,module,exports){
+},{"./http/index.js":92}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -625,6 +625,12 @@ Object.defineProperty(exports, "parse", {
     return _parse["default"];
   }
 });
+Object.defineProperty(exports, "queue", {
+  enumerable: true,
+  get: function get() {
+    return _queue["default"];
+  }
+});
 exports.commands = void 0;
 
 var commands = _interopRequireWildcard(require("./commands.js"));
@@ -632,6 +638,8 @@ var commands = _interopRequireWildcard(require("./commands.js"));
 exports.commands = commands;
 
 var _parse = _interopRequireDefault(require("./parse.js"));
+
+var _queue = _interopRequireDefault(require("./queue.js"));
 
 var _use = _interopRequireDefault(require("./use.js"));
 
@@ -641,7 +649,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 Object.values(commands).map(_use["default"]);
 
-},{"./commands.js":2,"./parse.js":6,"./use.js":53}],6:[function(require,module,exports){
+},{"./commands.js":2,"./parse.js":6,"./queue.js":53,"./use.js":54}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -670,7 +678,7 @@ function parse(_ref) {
   });
 }
 
-},{"../errors/UnsupportedParserError.js":85,"./use.js":53}],7:[function(require,module,exports){
+},{"../errors/UnsupportedParserError.js":86,"./use.js":54}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -717,7 +725,7 @@ var abortCommand = {
 };
 exports.abortCommand = abortCommand;
 
-},{"../../errors/NotCurrentlyPlayingError.js":70,"../../errors/UnknownResponseError.js":83}],8:[function(require,module,exports){
+},{"../../errors/NotCurrentlyPlayingError.js":71,"../../errors/UnknownResponseError.js":84}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -800,7 +808,7 @@ var calcThermistorCommand = {
 };
 exports.calcThermistorCommand = calcThermistorCommand;
 
-},{"../../errors/InvalidArgumentsError.js":64,"../../errors/UnknownResponseError.js":83}],10:[function(require,module,exports){
+},{"../../errors/InvalidArgumentsError.js":65,"../../errors/UnknownResponseError.js":84}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -840,7 +848,7 @@ var catCommand = {
 };
 exports.catCommand = catCommand;
 
-},{"../../errors/FileNotFoundError.js":63}],11:[function(require,module,exports){
+},{"../../errors/FileNotFoundError.js":64}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -886,7 +894,7 @@ var cdCommand = {
 };
 exports.cdCommand = cdCommand;
 
-},{"../../errors/CouldNotOpenError.js":60,"../../errors/UnknownResponseError.js":83}],12:[function(require,module,exports){
+},{"../../errors/CouldNotOpenError.js":61,"../../errors/UnknownResponseError.js":84}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -951,7 +959,7 @@ var configGetCommand = {
 };
 exports.configGetCommand = configGetCommand;
 
-},{"../../errors/InvalidArgumentsError.js":64,"../../errors/UndefinedSettingError.js":80,"../../errors/UnknownResponseError.js":83}],13:[function(require,module,exports){
+},{"../../errors/InvalidArgumentsError.js":65,"../../errors/UndefinedSettingError.js":81,"../../errors/UnknownResponseError.js":84}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1019,7 +1027,7 @@ var configLoadCommand = {
 };
 exports.configLoadCommand = configLoadCommand;
 
-},{"../../errors/InvalidArgumentsError.js":64,"../../errors/UnknownResponseError.js":83}],14:[function(require,module,exports){
+},{"../../errors/InvalidArgumentsError.js":65,"../../errors/UnknownResponseError.js":84}],14:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1085,7 +1093,7 @@ var configSetCommand = {
 };
 exports.configSetCommand = configSetCommand;
 
-},{"../../errors/InvalidArgumentsError.js":64,"../../errors/NotEnoughSpaceError.js":71,"../../errors/UndefinedSettingError.js":80,"../../errors/UnknownResponseError.js":83}],15:[function(require,module,exports){
+},{"../../errors/InvalidArgumentsError.js":65,"../../errors/NotEnoughSpaceError.js":72,"../../errors/UndefinedSettingError.js":81,"../../errors/UnknownResponseError.js":84}],15:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1125,7 +1133,7 @@ var dfuCommand = {
 };
 exports.dfuCommand = dfuCommand;
 
-},{"../../errors/UnknownResponseError.js":83}],16:[function(require,module,exports){
+},{"../../errors/UnknownResponseError.js":84}],16:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1244,7 +1252,7 @@ var fireCommand = {
 };
 exports.fireCommand = fireCommand;
 
-},{"../../errors/MinimalDurationError.js":67,"../../errors/NoLaserModuleError.js":69,"../../errors/UnknownResponseError.js":83}],18:[function(require,module,exports){
+},{"../../errors/MinimalDurationError.js":68,"../../errors/NoLaserModuleError.js":70,"../../errors/UnknownResponseError.js":84}],18:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1338,7 +1346,7 @@ var getCommand = {
 };
 exports.getCommand = getCommand;
 
-},{"../../errors/UnsupportedSubcommandError.js":86,"./getFkCommand.js":19,"./getIkCommand.js":20,"./getPosCommand.js":21,"./getStateCommand.js":22,"./getStatusCommand.js":23,"./getTempCommand.js":24,"./getWcsCommand.js":25}],19:[function(require,module,exports){
+},{"../../errors/UnsupportedSubcommandError.js":87,"./getFkCommand.js":19,"./getIkCommand.js":20,"./getPosCommand.js":21,"./getStateCommand.js":22,"./getStatusCommand.js":23,"./getTempCommand.js":24,"./getWcsCommand.js":25}],19:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1390,7 +1398,7 @@ var getFkCommand = {
 };
 exports.getFkCommand = getFkCommand;
 
-},{"../../errors/InvalidArgumentsError.js":64,"../../errors/UnknownResponseError.js":83}],20:[function(require,module,exports){
+},{"../../errors/InvalidArgumentsError.js":65,"../../errors/UnknownResponseError.js":84}],20:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1442,7 +1450,7 @@ var getIkCommand = {
 };
 exports.getIkCommand = getIkCommand;
 
-},{"../../errors/InvalidArgumentsError.js":64,"../../errors/UnknownResponseError.js":83}],21:[function(require,module,exports){
+},{"../../errors/InvalidArgumentsError.js":65,"../../errors/UnknownResponseError.js":84}],21:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1530,7 +1538,7 @@ var getPosCommand = {
 };
 exports.getPosCommand = getPosCommand;
 
-},{"../../errors/UnknownResponseError.js":83}],22:[function(require,module,exports){
+},{"../../errors/UnknownResponseError.js":84}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1580,7 +1588,7 @@ var getStateCommand = {
 };
 exports.getStateCommand = getStateCommand;
 
-},{"../../errors/UnknownResponseError.js":83}],23:[function(require,module,exports){
+},{"../../errors/UnknownResponseError.js":84}],23:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1692,7 +1700,7 @@ var getStatusCommand = {
 };
 exports.getStatusCommand = getStatusCommand;
 
-},{"../../errors/UnknownResponseError.js":83}],24:[function(require,module,exports){
+},{"../../errors/UnknownResponseError.js":84}],24:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1775,7 +1783,7 @@ var getTempCommand = {
 };
 exports.getTempCommand = getTempCommand;
 
-},{"../../errors/NotHeatersFoundError.js":72,"../../errors/UnknownDeviceError.js":81,"../../errors/UnknownResponseError.js":83}],25:[function(require,module,exports){
+},{"../../errors/NotHeatersFoundError.js":73,"../../errors/UnknownDeviceError.js":82,"../../errors/UnknownResponseError.js":84}],25:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1839,7 +1847,7 @@ var getWcsCommand = {
 };
 exports.getWcsCommand = getWcsCommand;
 
-},{"../../errors/UnknownResponseError.js":83}],26:[function(require,module,exports){
+},{"../../errors/UnknownResponseError.js":84}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1887,7 +1895,7 @@ var helpCommand = {
 };
 exports.helpCommand = helpCommand;
 
-},{"../../errors/UnknownResponseError.js":83}],27:[function(require,module,exports){
+},{"../../errors/UnknownResponseError.js":84}],27:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1961,7 +1969,7 @@ var loadCommand = {
 };
 exports.loadCommand = loadCommand;
 
-},{"../../errors/FileNotFoundError.js":63,"../../errors/UnknownResponseError.js":83}],28:[function(require,module,exports){
+},{"../../errors/FileNotFoundError.js":64,"../../errors/UnknownResponseError.js":84}],28:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2057,7 +2065,7 @@ var lsCommand = {
 };
 exports.lsCommand = lsCommand;
 
-},{"../../errors/CouldNotOpenError.js":60,"../../errors/UnknownResponseError.js":83,"../fileFactory.js":3,"../folderFactory.js":4}],29:[function(require,module,exports){
+},{"../../errors/CouldNotOpenError.js":61,"../../errors/UnknownResponseError.js":84,"../fileFactory.js":3,"../folderFactory.js":4}],29:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2106,7 +2114,7 @@ var md5sumCommand = {
 };
 exports.md5sumCommand = md5sumCommand;
 
-},{"../../errors/FileNotFoundError.js":63,"../../errors/UnknownResponseError.js":83}],30:[function(require,module,exports){
+},{"../../errors/FileNotFoundError.js":64,"../../errors/UnknownResponseError.js":84}],30:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2242,7 +2250,7 @@ var memCommand = {
 };
 exports.memCommand = memCommand;
 
-},{"../../errors/UnknownResponseError.js":83}],31:[function(require,module,exports){
+},{"../../errors/UnknownResponseError.js":84}],31:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2281,7 +2289,7 @@ var mkdirCommand = {
 };
 exports.mkdirCommand = mkdirCommand;
 
-},{"../../errors/CouldNotCreateError.js":57}],32:[function(require,module,exports){
+},{"../../errors/CouldNotCreateError.js":58}],32:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2322,7 +2330,7 @@ var mvCommand = {
 };
 exports.mvCommand = mvCommand;
 
-},{"../../errors/CouldNotMoveError.js":59}],33:[function(require,module,exports){
+},{"../../errors/CouldNotMoveError.js":60}],33:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2389,7 +2397,7 @@ var netCommand = {
 };
 exports.netCommand = netCommand;
 
-},{"../../errors/UnknownResponseError.js":83}],34:[function(require,module,exports){
+},{"../../errors/UnknownResponseError.js":84}],34:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2448,7 +2456,7 @@ var playCommand = {
 };
 exports.playCommand = playCommand;
 
-},{"../../errors/CurrentlyPlayingError.js":62,"../../errors/FileNotFoundError.js":63,"../../errors/UnknownResponseError.js":83}],35:[function(require,module,exports){
+},{"../../errors/CurrentlyPlayingError.js":63,"../../errors/FileNotFoundError.js":64,"../../errors/UnknownResponseError.js":84}],35:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2541,7 +2549,7 @@ var progressCommand = {
 };
 exports.progressCommand = progressCommand;
 
-},{"../../errors/NotCurrentlyPlayingError.js":70,"../../errors/UnknownFileSizeError.js":82,"../../errors/UnknownResponseError.js":83}],36:[function(require,module,exports){
+},{"../../errors/NotCurrentlyPlayingError.js":71,"../../errors/UnknownFileSizeError.js":83,"../../errors/UnknownResponseError.js":84}],36:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2678,7 +2686,7 @@ var resumeCommand = {
 };
 exports.resumeCommand = resumeCommand;
 
-},{"../../errors/KillError.js":66,"../../errors/NotSuspendedError.js":73,"../../errors/UnknownResponseError.js":83}],40:[function(require,module,exports){
+},{"../../errors/KillError.js":67,"../../errors/NotSuspendedError.js":74,"../../errors/UnknownResponseError.js":84}],40:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2718,7 +2726,7 @@ var rmCommand = {
 };
 exports.rmCommand = rmCommand;
 
-},{"../../errors/CouldNotDeleteError.js":58}],41:[function(require,module,exports){
+},{"../../errors/CouldNotDeleteError.js":59}],41:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2758,7 +2766,7 @@ var saveCommand = {
 };
 exports.saveCommand = saveCommand;
 
-},{"../../errors/UnknownResponseError.js":83}],42:[function(require,module,exports){
+},{"../../errors/UnknownResponseError.js":84}],42:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2798,7 +2806,7 @@ var setTempCommand = {
 };
 exports.setTempCommand = setTempCommand;
 
-},{"../../errors/UnknownDeviceError.js":81}],43:[function(require,module,exports){
+},{"../../errors/UnknownDeviceError.js":82}],43:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2845,7 +2853,7 @@ var suspendCommand = {
 };
 exports.suspendCommand = suspendCommand;
 
-},{"../../errors/AlreadySuspendedError.js":55,"../../errors/UnknownResponseError.js":83}],44:[function(require,module,exports){
+},{"../../errors/AlreadySuspendedError.js":56,"../../errors/UnknownResponseError.js":84}],44:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2901,7 +2909,7 @@ var switchCommand = {
 };
 exports.switchCommand = switchCommand;
 
-},{"../../errors/UnknownDeviceError.js":81,"../../errors/UnknownResponseError.js":83}],45:[function(require,module,exports){
+},{"../../errors/UnknownDeviceError.js":82,"../../errors/UnknownResponseError.js":84}],45:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2941,7 +2949,7 @@ var testCircleCommand = {
 };
 exports.testCircleCommand = testCircleCommand;
 
-},{"../../errors/InvalidArgumentsError.js":64}],46:[function(require,module,exports){
+},{"../../errors/InvalidArgumentsError.js":65}],46:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3011,7 +3019,7 @@ var testCommand = {
 };
 exports.testCommand = testCommand;
 
-},{"../../errors/UnsupportedSubcommandError.js":86,"./testCircleCommand.js":45,"./testJogCommand.js":47,"./testRawCommand.js":48,"./testSquareCommand.js":49}],47:[function(require,module,exports){
+},{"../../errors/UnsupportedSubcommandError.js":87,"./testCircleCommand.js":45,"./testJogCommand.js":47,"./testRawCommand.js":48,"./testSquareCommand.js":49}],47:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3051,7 +3059,7 @@ var testJogCommand = {
 };
 exports.testJogCommand = testJogCommand;
 
-},{"../../errors/InvalidArgumentsError.js":64}],48:[function(require,module,exports){
+},{"../../errors/InvalidArgumentsError.js":65}],48:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3093,7 +3101,7 @@ var testRawCommand = {
 };
 exports.testRawCommand = testRawCommand;
 
-},{"../../errors/InvalidArgumentsError.js":64}],49:[function(require,module,exports){
+},{"../../errors/InvalidArgumentsError.js":65}],49:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3133,7 +3141,7 @@ var testSquareCommand = {
 };
 exports.testSquareCommand = testSquareCommand;
 
-},{"../../errors/InvalidArgumentsError.js":64}],50:[function(require,module,exports){
+},{"../../errors/InvalidArgumentsError.js":65}],50:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3193,7 +3201,7 @@ var thermistorsCommand = {
 };
 exports.thermistorsCommand = thermistorsCommand;
 
-},{"../../errors/UnknownResponseError.js":83}],51:[function(require,module,exports){
+},{"../../errors/UnknownResponseError.js":84}],51:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3239,7 +3247,7 @@ var uploadCommand = {
 };
 exports.uploadCommand = uploadCommand;
 
-},{"../../errors/CouldNotUploadError.js":61,"../fileFactory.js":3}],52:[function(require,module,exports){
+},{"../../errors/CouldNotUploadError.js":62,"../fileFactory.js":3}],52:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3296,7 +3304,141 @@ var versionCommand = {
 };
 exports.versionCommand = versionCommand;
 
-},{"../../errors/UnknownResponseError.js":83}],53:[function(require,module,exports){
+},{"../../errors/UnknownResponseError.js":84}],53:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = queue;
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { keys.push.apply(keys, Object.getOwnPropertySymbols(object)); } if (enumerableOnly) keys = keys.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function queue(_ref) {
+  var callback = _ref.callback,
+      commands = _ref.commands,
+      _ref$onStart = _ref.onStart,
+      onStart = _ref$onStart === void 0 ? null : _ref$onStart,
+      _ref$onPause = _ref.onPause,
+      onPause = _ref$onPause === void 0 ? null : _ref$onPause,
+      _ref$onResume = _ref.onResume,
+      onResume = _ref$onResume === void 0 ? null : _ref$onResume,
+      _ref$onStop = _ref.onStop,
+      onStop = _ref$onStop === void 0 ? null : _ref$onStop,
+      _ref$onSend = _ref.onSend,
+      onSend = _ref$onSend === void 0 ? null : _ref$onSend,
+      _ref$onResponse = _ref.onResponse,
+      onResponse = _ref$onResponse === void 0 ? null : _ref$onResponse,
+      _ref$onError = _ref.onError,
+      onError = _ref$onError === void 0 ? null : _ref$onError,
+      _ref$onDone = _ref.onDone,
+      onDone = _ref$onDone === void 0 ? null : _ref$onDone;
+  var started = false;
+  var paused = false;
+  var results = [];
+  var globalResolve = null;
+  var globalReject = null;
+
+  function payload() {
+    var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    return _objectSpread({}, params, {
+      commands: commands,
+      resolve: globalResolve,
+      reject: globalReject
+    });
+  }
+
+  function processQueue() {
+    if (paused || !started) return;
+    var command = commands.shift();
+
+    if (!command) {
+      if (typeof onDone === 'function') {
+        onDone(results);
+      }
+
+      return globalResolve(results);
+    }
+
+    if (typeof onSend === 'function') {
+      onSend(payload({
+        command: command
+      }));
+    }
+
+    return callback(command).then(function (response) {
+      results.push(response);
+
+      if (typeof onResponse === 'function') {
+        onResponse(payload({
+          response: response
+        }));
+      }
+    })["catch"](function (error) {
+      results.push(error);
+
+      if (typeof onError === 'function') {
+        onError(payload({
+          error: error
+        }));
+      }
+    }).then(function () {
+      return processQueue();
+    });
+  }
+
+  return {
+    start: function start() {
+      if (started || !commands.length) return;
+      started = true;
+      return new Promise(function (resolve, reject) {
+        globalResolve = resolve;
+        globalReject = reject;
+
+        if (typeof onStart === 'function') {
+          onStart(payload());
+        }
+
+        return processQueue();
+      });
+    },
+    pause: function pause() {
+      if (!started || paused) return;
+      paused = true;
+
+      if (typeof onPause === 'function') {
+        onPause(payload());
+      }
+    },
+    resume: function resume() {
+      if (!paused) return;
+      paused = false;
+
+      if (typeof onResume === 'function') {
+        onResume(payload());
+      }
+
+      return processQueue();
+    },
+    stop: function stop() {
+      if (!started) return;
+
+      if (typeof onStop === 'function') {
+        onStop(payload());
+      }
+
+      started = false;
+      paused = false;
+      commands = [];
+    }
+  };
+}
+
+},{}],54:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3320,7 +3462,7 @@ function use(command) {
   usedCommands[command.command] = command;
 }
 
-},{"../errors/InvalidCommandError.js":65}],54:[function(require,module,exports){
+},{"../errors/InvalidCommandError.js":66}],55:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3391,7 +3533,7 @@ exports.PARALLEL_REQUEST_ERROR = PARALLEL_REQUEST_ERROR;
 var SERVER_ERROR = 'SERVER_ERROR';
 exports.SERVER_ERROR = SERVER_ERROR;
 
-},{}],55:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3439,7 +3581,7 @@ function (_CommandError) {
 
 exports["default"] = AlreadySuspendedError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],56:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],57:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3505,7 +3647,7 @@ function (_Error) {
 
 exports["default"] = CommandError;
 
-},{"../error-types.js":54}],57:[function(require,module,exports){
+},{"../error-types.js":55}],58:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3553,7 +3695,7 @@ function (_CommandError) {
 
 exports["default"] = CouldNotCreateError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],58:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],59:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3601,7 +3743,7 @@ function (_CommandError) {
 
 exports["default"] = CouldNotDeleteError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],59:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],60:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3649,7 +3791,7 @@ function (_CommandError) {
 
 exports["default"] = CouldNotMoveError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],60:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],61:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3697,7 +3839,7 @@ function (_CommandError) {
 
 exports["default"] = CouldNotOpenError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],61:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],62:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3745,7 +3887,7 @@ function (_CommandError) {
 
 exports["default"] = CouldNotUploadError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],62:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],63:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3793,7 +3935,7 @@ function (_CommandError) {
 
 exports["default"] = CurrentlyPlayingError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],63:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],64:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3841,7 +3983,7 @@ function (_CommandError) {
 
 exports["default"] = FileNotFoundError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],64:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],65:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3889,7 +4031,7 @@ function (_CommandError) {
 
 exports["default"] = InvalidArgumentsError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],65:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],66:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3937,7 +4079,7 @@ function (_CommandError) {
 
 exports["default"] = InvalidCommandError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],66:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],67:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3985,7 +4127,7 @@ function (_CommandError) {
 
 exports["default"] = KillError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],67:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],68:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4033,7 +4175,7 @@ function (_CommandError) {
 
 exports["default"] = MinimalDurationError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],68:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],69:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4084,7 +4226,7 @@ function (_RequestError) {
 
 exports["default"] = NetworkError;
 
-},{"../error-types.js":54,"./RequestError.js":76}],69:[function(require,module,exports){
+},{"../error-types.js":55,"./RequestError.js":77}],70:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4132,7 +4274,7 @@ function (_CommandError) {
 
 exports["default"] = NoLaserModuleError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],70:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],71:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4180,7 +4322,7 @@ function (_CommandError) {
 
 exports["default"] = NotCurrentlyPlayingError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],71:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],72:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4228,7 +4370,7 @@ function (_CommandError) {
 
 exports["default"] = NotEnoughSpaceError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],72:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],73:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4276,7 +4418,7 @@ function (_CommandError) {
 
 exports["default"] = NotHeatersFoundError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],73:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],74:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4324,7 +4466,7 @@ function (_CommandError) {
 
 exports["default"] = NotSuspendedError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],74:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],75:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4375,7 +4517,7 @@ function (_RequestError) {
 
 exports["default"] = ParallelRequestError;
 
-},{"../error-types.js":54,"./RequestError.js":76}],75:[function(require,module,exports){
+},{"../error-types.js":55,"./RequestError.js":77}],76:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4426,7 +4568,7 @@ function (_RequestError) {
 
 exports["default"] = RequestAbortedError;
 
-},{"../error-types.js":54,"./RequestError.js":76}],76:[function(require,module,exports){
+},{"../error-types.js":55,"./RequestError.js":77}],77:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4497,7 +4639,7 @@ function (_Error) {
 
 exports["default"] = RequestError;
 
-},{"../error-types.js":54}],77:[function(require,module,exports){
+},{"../error-types.js":55}],78:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4549,7 +4691,7 @@ function (_RequestError) {
 
 exports["default"] = RequestOpenError;
 
-},{"../error-types.js":54,"./RequestError.js":76}],78:[function(require,module,exports){
+},{"../error-types.js":55,"./RequestError.js":77}],79:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4601,7 +4743,7 @@ function (_RequestError) {
 
 exports["default"] = RequestTimeoutError;
 
-},{"../error-types.js":54,"./RequestError.js":76}],79:[function(require,module,exports){
+},{"../error-types.js":55,"./RequestError.js":77}],80:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4653,7 +4795,7 @@ function (_RequestError) {
 
 exports["default"] = ServerError;
 
-},{"../error-types.js":54,"./RequestError.js":76}],80:[function(require,module,exports){
+},{"../error-types.js":55,"./RequestError.js":77}],81:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4701,7 +4843,7 @@ function (_CommandError) {
 
 exports["default"] = UndefinedSettingError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],81:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],82:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4749,7 +4891,7 @@ function (_CommandError) {
 
 exports["default"] = UnknownDeviceError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],82:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],83:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4797,7 +4939,7 @@ function (_CommandError) {
 
 exports["default"] = UnknownFileSizeError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],83:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],84:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4849,7 +4991,7 @@ function (_CommandError) {
 
 exports["default"] = UnknownResponseError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],84:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],85:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4897,7 +5039,7 @@ function (_CommandError) {
 
 exports["default"] = UnsupportedCommandError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],85:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],86:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4945,7 +5087,7 @@ function (_CommandError) {
 
 exports["default"] = UnsupportedParserError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],86:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],87:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4993,7 +5135,7 @@ function (_CommandError) {
 
 exports["default"] = UnsupportedSubcommandError;
 
-},{"../error-types.js":54,"./CommandError.js":56}],87:[function(require,module,exports){
+},{"../error-types.js":55,"./CommandError.js":57}],88:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5055,7 +5197,7 @@ function cat() {
   });
 }
 
-},{"../../commands/parsers/catCommand.js":10,"../../errors/RequestError.js":76,"../request/get.js":92}],88:[function(require,module,exports){
+},{"../../commands/parsers/catCommand.js":10,"../../errors/RequestError.js":77,"../request/get.js":94}],89:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5178,9 +5320,17 @@ function command() {
       response.data = (0, _parse["default"])({
         command: command,
         args: args,
-        response: response.text.trim()
+        response: response.text
       });
     } catch (error) {
+      if (error.type === 'UNSUPPORTED_PARSER_ERROR') {
+        var ok = response.text.toLowerCase() === 'ok';
+        response.data = ok ? {
+          ok: true
+        } : response.text;
+        return response;
+      }
+
       throw new _RequestError["default"]({
         type: error.type || error.name,
         message: error.message,
@@ -5193,7 +5343,7 @@ function command() {
   });
 }
 
-},{"../../commands/parse.js":6,"../../commands/use.js":53,"../../errors/RequestError.js":76,"../../errors/UnsupportedCommandError.js":84,"../request/post.js":94,"../request/responseFactory.js":96,"./cat.js":87,"./upload.js":90}],89:[function(require,module,exports){
+},{"../../commands/parse.js":6,"../../commands/use.js":54,"../../errors/RequestError.js":77,"../../errors/UnsupportedCommandError.js":85,"../request/post.js":96,"../request/responseFactory.js":98,"./cat.js":88,"./upload.js":91}],90:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5222,7 +5372,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var _default = _command["default"];
 exports["default"] = _default;
 
-},{"./command.js":88,"./upload.js":90}],90:[function(require,module,exports){
+},{"./command.js":89,"./upload.js":91}],91:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5315,20 +5465,43 @@ function upload() {
   });
 }
 
-},{"../../commands/parsers/uploadCommand.js":51,"../../errors/RequestError.js":76,"../request/post.js":94}],91:[function(require,module,exports){
+},{"../../commands/parsers/uploadCommand.js":51,"../../errors/RequestError.js":77,"../request/post.js":96}],92:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var _exportNames = {
-  errorTypes: true
+  errorTypes: true,
+  queue: true,
+  commands: true,
+  parse: true
 };
+Object.defineProperty(exports, "queue", {
+  enumerable: true,
+  get: function get() {
+    return _queue["default"];
+  }
+});
+Object.defineProperty(exports, "commands", {
+  enumerable: true,
+  get: function get() {
+    return _index3.commands;
+  }
+});
+Object.defineProperty(exports, "parse", {
+  enumerable: true,
+  get: function get() {
+    return _index3.parse;
+  }
+});
 exports.errorTypes = void 0;
 
 var errorTypes = _interopRequireWildcard(require("../error-types.js"));
 
 exports.errorTypes = errorTypes;
+
+var _queue = _interopRequireDefault(require("./queue.js"));
 
 var _index = require("./request/index.js");
 
@@ -5358,20 +5531,35 @@ Object.keys(_index2).forEach(function (key) {
 
 var _index3 = require("../commands/index.js");
 
-Object.keys(_index3).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _index3[key];
-    }
-  });
-});
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
-},{"../commands/index.js":5,"../error-types.js":54,"./command/index.js":89,"./request/index.js":93}],92:[function(require,module,exports){
+},{"../commands/index.js":5,"../error-types.js":55,"./command/index.js":90,"./queue.js":93,"./request/index.js":95}],93:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = _default;
+
+var _index = require("./command/index.js");
+
+var _index2 = require("../commands/index.js");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { keys.push.apply(keys, Object.getOwnPropertySymbols(object)); } if (enumerableOnly) keys = keys.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _default(params) {
+  return (0, _index2.queue)(_objectSpread({}, params, {
+    callback: _index.command
+  }));
+}
+
+},{"../commands/index.js":5,"./command/index.js":90}],94:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5396,7 +5584,7 @@ function get() {
   }));
 }
 
-},{"./request.js":95}],93:[function(require,module,exports){
+},{"./request.js":97}],95:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5433,7 +5621,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var _default = _request["default"];
 exports["default"] = _default;
 
-},{"./get.js":92,"./post.js":94,"./request.js":95}],94:[function(require,module,exports){
+},{"./get.js":94,"./post.js":96,"./request.js":97}],96:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5458,7 +5646,7 @@ function post() {
   }));
 }
 
-},{"./request.js":95}],95:[function(require,module,exports){
+},{"./request.js":97}],97:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5682,7 +5870,7 @@ function request() {
   });
 }
 
-},{"../../errors/NetworkError.js":68,"../../errors/ParallelRequestError.js":74,"../../errors/RequestAbortedError.js":75,"../../errors/RequestOpenError.js":77,"../../errors/RequestTimeoutError.js":78,"../../errors/ServerError.js":79,"../request/responseFactory.js":96}],96:[function(require,module,exports){
+},{"../../errors/NetworkError.js":69,"../../errors/ParallelRequestError.js":75,"../../errors/RequestAbortedError.js":76,"../../errors/RequestOpenError.js":78,"../../errors/RequestTimeoutError.js":79,"../../errors/ServerError.js":80,"../request/responseFactory.js":98}],98:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
