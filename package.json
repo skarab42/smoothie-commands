@@ -1,6 +1,6 @@
 {
   "name": "smoothie-commands",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "A Smoothie firmware (http|serial) commands API",
   "main": "./dist/bundle.http.js",
   "module": "./src/index.js",
@@ -12,8 +12,8 @@
     "bundle:all": "yarn bundle:http && yarn bundle:http:tiny",
     "build:demo": "browserify ./src/build-http.js -t babelify -p tinyify > ./demo/bundle.js",
     "surge:demo": "yarn build:demo && cd demo && surge --domain smoothie-commands.surge.sh",
-    "publish": "yarn build:all && surge:demo",
-    "lint:src": "eslint ./src/**"
+    "build": "yarn bundle:all && yarn surge:demo",
+    "lint": "eslint ./src/**"
   },
   "repository": {
     "type": "git",
