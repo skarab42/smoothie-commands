@@ -2,11 +2,18 @@
   border: 0;
   margin: 0;
   padding: 0;
+  font-size: 100%;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 button {
   cursor: pointer;
+  font-weight: bold;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 
 #header {
@@ -16,65 +23,71 @@ button {
 #header h1 {
   color: #eee;
   padding: 25px;
+  font-size: 2em;
 }
 
-#form {
+.row, .col {
   display: flex;
-  flex-wrap: wrap;
-  background-color: #ccc;
 }
 
-#form > * {
-  color: #333;
-  flex-grow: 1;
-  padding: 25px;
-  font-size: 1.5em;
-  border-left: 1px #aaa solid;
-  background-color: #ccc;
+.row > *, .col > * {
+  flex: 1 1 0;
 }
 
-#form button {
-  color: #923baf;
-  font-weight: bold;
+.row {
+  flex-direction: row;
 }
 
-#form button:disabled {
-  color: #ddd;
-  cursor: not-allowed;
-}
-
-#console {
-  overflow: auto;
-  display: flex;
-  flex-wrap: wrap;
+.col {
   flex-direction: column;
-  background-color: #fff;
-  justify-content: center;
 }
 
-#console > * {
-  flex: 1 1 auto;
-  display: flex;
+.wrap {
   flex-wrap: wrap;
-  font-size: 1.5em;
-  border-bottom: 1px #aaa solid;
 }
 
-#console pre {
-  flex: 1 1 auto;
-  padding: 25px;
-  width: auto;
-}
-
-#console pre.request {
-  background-color: #eee;
-}
-
-#console pre.error {
-  color: #eee;
-  background-color: #c14141;
+.wrap-reverse {
+  flex-wrap: wrap-reverse;
 }
 
 .drop-shadow {
   filter: drop-shadow(0 0 5px #333);
+}
+
+#form > * {
+  padding: 25px;
+  font-size: 1.5em;
+  border-left: 1px #eee solid;
+  border-bottom: 1px #eee solid;
+}
+
+.box {
+  padding: 25px;
+  font-size: 1.5em;
+  border-bottom: 4px #ccc dashed;
+}
+
+.request {
+  background-color: #eee;
+}
+
+.error {
+  color: #eee;
+  background-color: #c14141;
+}
+
+.loading {
+  animation-name: loading;
+  animation-duration: .5s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+@keyframes loading {
+  from {
+    color: #ccc;
+  }
+  to {
+    color: #555;
+  }
 }

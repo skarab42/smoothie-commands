@@ -166,16 +166,24 @@ $sendButton.addEventListener('click', sendCommand, false);
 function sendCommand () {
   var command = $commandSelect.value;
   var args = $argsInput.value.split(' ');
-  var params = { address, command, args };
+  var $response = null
+  var params = {
+    address,
+    command,
+    args,
+    beforeSend: ({ params }) => {
+      $response = addCommand(params)
+    }
+  };
   console.log('send:', params);
   smoothieCommands.command(params)
     .then(response => {
       console.log(response.data);
-      addResponse(response);
+      setResponse($response, response.data);
     })
     .catch(error => {
       console.error(error);
-      addError(error);
+      setError($response, error);
     });
 }
 
@@ -184,43 +192,83 @@ function prependChild (parent, child) {
   parent.insertBefore(child, parent.firstChild);
 }
 
-function addResponse (response) {
-  var $response = document.createElement('div');
-  var $requestPre = document.createElement('pre');
-  var $responsePre = document.createElement('pre');
-  var requestJSON = JSON.stringify(response.params, null, 2);
-  var responseJSON = JSON.stringify(response.data, null, 2);
-  $requestPre.innerText = `Request: ${requestJSON}`;
-  $requestPre.className = 'request';
-  $responsePre.innerText = `Response: ${responseJSON}`;
-  $responsePre.className = 'response';
-  $response.appendChild($requestPre);
-  $response.appendChild($responsePre);
-  // $console.appendChild($response);
-  prependChild($console, $response);
+function addRequest ($command, request) {
+  var $request = document.createElement('pre');
+  var json = JSON.stringify(request, null, 2);
+  $request.innerText = `Request: ${json}`;
+  $request.className = 'box request';
+  $command.appendChild($request);
 }
 
-// response factory
-function addError (error) {
-  var $response = document.createElement('div');
-  var $requestPre = document.createElement('pre');
-  var $responsePre = document.createElement('pre');
-  var requestJSON = JSON.stringify(error.response.params, null, 2);
+function addResponse ($command) {
+  var $response = document.createElement('pre');
+  $response.innerText = `Response: loading...`;
+  $response.className = 'box response loading';
+  $command.appendChild($response);
+  return $response;
+}
+
+function addCommand (request) {
+  var $command = document.createElement('div');
+  $command.className = 'command row wrap-reverse';
+  addRequest($command, request);
+  $response = addResponse($command);
+  prependChild($console, $command);
+  return $response;
+}
+
+function setResponse ($response, response) {
+  var json = JSON.stringify(response, null, 2);
+  $response.innerText = `Response: ${json}`;
+  $response.className = 'box response';
+}
+
+function setError ($response, error) {
   var response = {
     type: error.type,
-    name: error.name,
-    message: error.message
+    message: error.message,
+    parentError: error.parentError
   }
-  var responseJSON = JSON.stringify(response, null, 2);
-  $requestPre.innerText = `Request: ${requestJSON}`;
-  $requestPre.className = 'request';
-  $responsePre.innerText = `Error: ${responseJSON}`;
-  $responsePre.className = 'error';
-  $response.appendChild($requestPre);
-  $response.appendChild($responsePre);
-  // $console.appendChild($response);
-  prependChild($console, $response);
+  var json = JSON.stringify(response, null, 2);
+  $response.innerText = `${error.message}\n\n---\n\n${error.name}: ${json}`;
+  $response.className = 'box error';
 }
+
+// function addRequest (request) {
+//   var $requestPre = document.createElement('pre');
+//   var requestJSON = JSON.stringify(request, null, 2);
+//   $requestPre.innerText = `Request: ${requestJSON}`;
+//   $requestPre.className = 'request';
+//   prependChild($console, $requestPre);
+// }
+//
+// function addResponse () {
+//   var $response = document.createElement('div');
+//   $response.className = 'command row';
+//   var $responsePre = document.createElement('pre');
+//   $responsePre.innerText = `Response: loading...`;
+//   $responsePre.className = 'response';
+//   $response.appendChild($responsePre);
+//   prependChild($console, $response);
+//   return $responsePre;
+// }
+//
+// function finalizeResponse ($response, response) {
+//   var responseJSON = JSON.stringify(response, null, 2);
+//   $response.innerText = `Response: ${responseJSON}`;
+// }
+//
+// function addError ($response, error) {
+//   var requestJSON = JSON.stringify(error.response.params, null, 2);
+//   var response = {
+//     type: error.type,
+//     message: error.message,
+//     parentError: error.parentError
+//   }
+//   var responseJSON = JSON.stringify(response, null, 2);
+//   $response.innerText = `${error.message}\n\n---\n\n${error.name}: ${responseJSON}`;
+//   $response.className = 'error';
+// }
 
 // var pouet = []
 // Object.values(smoothieCommands.commands).forEach(command => {
