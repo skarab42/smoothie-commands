@@ -92,7 +92,7 @@ smoothieCommands.command({
 
 # Commands queue
 By default parallel request are prohibited and you need to wait for the end of a request before sending another.
-But fortunately there is the `queu()` helper to help you manage this constraint.
+But fortunately there is the `queue()` helper to help you manage this constraint.
 
 ```js
 import { queue, command } from '../src/http'
