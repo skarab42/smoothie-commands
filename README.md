@@ -8,6 +8,7 @@ Sent commands to smoothie firmware hardware over HTTP or Serial connexion and ge
 > **Table of contents**
 >
 > * [Online demo](#online-demo)
+> * [Install](#install)
 > * [Usages](#usages)
 >   * [HTTP interface](#http-interface)
 >     - [ES6 module](#es6-module)
@@ -28,6 +29,9 @@ Sent commands to smoothie firmware hardware over HTTP or Serial connexion and ge
 >     - [Lint code](#lint-code)
 # Online demo
 - [Http interface](http://smoothie-commands.surge.sh/)
+
+# Install
+`> yarn add smoothie-commands`
 
 # Usages
 ## HTTP interface
