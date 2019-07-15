@@ -5,6 +5,7 @@ export default class RequestTimeoutError extends RequestError {
   constructor ({ timeout, response }) {
     super({
       response,
+      name: 'RequestTimeoutError',
       type: REQUEST_TIMEOUT_ERROR,
       message: `Timeout of [${timeout}] ms exceeded.`
     })

@@ -1,10 +1,14 @@
 import { UNDEFINED_ERROR } from '../error-types.js'
 
 export default class CommandError extends Error {
-  constructor ({ message, type = UNDEFINED_ERROR }) {
+  constructor ({
+    message,
+    name = 'CommandError',
+    type = UNDEFINED_ERROR
+  }) {
     super(message)
+    this.name = name
     this.type = type
-    this.name = this.constructor.name
     if (typeof Error.captureStackTrace === 'function') {
       Error.captureStackTrace(this, this.constructor)
     } else {

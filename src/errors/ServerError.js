@@ -5,6 +5,7 @@ export default class ServerError extends RequestError {
   constructor ({ status, response }) {
     super({
       response,
+      name: 'ServerError',
       type: SERVER_ERROR,
       message: `Server error [${status}].`
     })

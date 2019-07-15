@@ -5,6 +5,7 @@ export default class RequestAbortedError extends RequestError {
   constructor ({ response }) {
     super({
       response,
+      name: 'RequestAbortedError',
       type: REQUEST_ABORTED_ERROR,
       message: 'Request aborted.'
     })
