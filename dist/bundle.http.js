@@ -3428,6 +3428,7 @@ function (_CommandError) {
     _classCallCheck(this, AlreadySuspendedError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(AlreadySuspendedError).call(this, {
+      name: 'AlreadySuspendedError',
       type: _errorTypes.ALREADY_SUSPENDED_ERROR,
       message: 'Already suspended.'
     }));
@@ -3479,14 +3480,16 @@ function (_Error) {
     var _this;
 
     var message = _ref.message,
+        _ref$name = _ref.name,
+        name = _ref$name === void 0 ? 'CommandError' : _ref$name,
         _ref$type = _ref.type,
         type = _ref$type === void 0 ? _errorTypes.UNDEFINED_ERROR : _ref$type;
 
     _classCallCheck(this, CommandError);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CommandError).call(this, message));
+    _this.name = name;
     _this.type = type;
-    _this.name = _this.constructor.name;
 
     if (typeof Error.captureStackTrace === 'function') {
       Error.captureStackTrace(_assertThisInitialized(_this), _this.constructor);
@@ -3539,6 +3542,7 @@ function (_CommandError) {
     _classCallCheck(this, CouldNotCreateError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(CouldNotCreateError).call(this, {
+      name: 'CouldNotCreateError',
       type: _errorTypes.COULD_NOT_CREATE_ERROR,
       message: "Could not create [".concat(what, "].")
     }));
@@ -3586,6 +3590,7 @@ function (_CommandError) {
     _classCallCheck(this, CouldNotDeleteError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(CouldNotDeleteError).call(this, {
+      name: 'CouldNotDeleteError',
       type: _errorTypes.COULD_NOT_DELETE_ERROR,
       message: "Could not delete [".concat(what, "].")
     }));
@@ -3633,6 +3638,7 @@ function (_CommandError) {
     _classCallCheck(this, CouldNotMoveError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(CouldNotMoveError).call(this, {
+      name: 'CouldNotMoveError',
       type: _errorTypes.COULD_NOT_MOVE_ERROR,
       message: "Could not move [".concat(source, "] to [").concat(target, "].")
     }));
@@ -3680,6 +3686,7 @@ function (_CommandError) {
     _classCallCheck(this, CouldNotOpenError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(CouldNotOpenError).call(this, {
+      name: 'CouldNotOpenError',
       type: _errorTypes.COULD_NOT_OPEN_ERROR,
       message: "Could not open [".concat(file, "].")
     }));
@@ -3727,6 +3734,7 @@ function (_CommandError) {
     _classCallCheck(this, CouldNotUploadError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(CouldNotUploadError).call(this, {
+      name: 'CouldNotUploadError',
       type: _errorTypes.COULD_NOT_UPLOAD_ERROR,
       message: "Could not upload [".concat(what, "].")
     }));
@@ -3774,6 +3782,7 @@ function (_CommandError) {
     _classCallCheck(this, CurrentlyPlayingError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(CurrentlyPlayingError).call(this, {
+      name: 'CurrentlyPlayingError',
       type: _errorTypes.CURRENTLY_PLAYING_ERROR,
       message: 'Currently printing, suspend or abord first.'
     }));
@@ -3821,6 +3830,7 @@ function (_CommandError) {
     _classCallCheck(this, FileNotFoundError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(FileNotFoundError).call(this, {
+      name: 'FileNotFoundError',
       type: _errorTypes.FILE_NOT_FOUND_ERROR,
       message: "File not found [".concat(file, "].")
     }));
@@ -3868,6 +3878,7 @@ function (_CommandError) {
     _classCallCheck(this, InvalidArgumentsError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(InvalidArgumentsError).call(this, {
+      name: 'InvalidArgumentsError',
       type: _errorTypes.INVALID_ARGUMENTS_ERROR,
       message: "Invalid arguments [".concat(args.join(' '), "].\nUsage: ").concat(usage)
     }));
@@ -3915,6 +3926,7 @@ function (_CommandError) {
     _classCallCheck(this, InvalidCommandError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(InvalidCommandError).call(this, {
+      name: 'InvalidCommandError',
       type: _errorTypes.INVALID_COMMAND_ERROR,
       message: 'Command must contain [command] and [parse] properties.'
     }));
@@ -3962,6 +3974,7 @@ function (_CommandError) {
     _classCallCheck(this, KillError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(KillError).call(this, {
+      name: 'KillError',
       type: _errorTypes.KILL_ERROR,
       message: 'KILLED'
     }));
@@ -4009,6 +4022,7 @@ function (_CommandError) {
     _classCallCheck(this, MinimalDurationError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(MinimalDurationError).call(this, {
+      name: 'MinimalDurationError',
       type: _errorTypes.MINIMAL_DURATION_ERROR,
       message: "Minimal duration is [".concat(duration, "] ms.")
     }));
@@ -4059,6 +4073,7 @@ function (_RequestError) {
 
     return _possibleConstructorReturn(this, _getPrototypeOf(NetworkError).call(this, {
       response: response,
+      name: 'NetworkError',
       type: _errorTypes.NETWORK_ERROR,
       message: 'Network error.'
     }));
@@ -4106,6 +4121,7 @@ function (_CommandError) {
     _classCallCheck(this, NoLaserModuleError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(NoLaserModuleError).call(this, {
+      name: 'NoLaserModuleError',
       type: _errorTypes.NO_LASER_MODULE_ERROR,
       message: 'No laser module, edit config file to enable.'
     }));
@@ -4153,6 +4169,7 @@ function (_CommandError) {
     _classCallCheck(this, NotCurrentlyPlayingError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(NotCurrentlyPlayingError).call(this, {
+      name: 'NotCurrentlyPlayingError',
       type: _errorTypes.NOT_CURRENTLY_PLAYING_ERROR,
       message: 'Not currently playing.'
     }));
@@ -4200,6 +4217,7 @@ function (_CommandError) {
     _classCallCheck(this, NotEnoughSpaceError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(NotEnoughSpaceError).call(this, {
+      name: 'NotEnoughSpaceError',
       type: _errorTypes.NOT_ENOUGH_SPACE_ERROR,
       message: "Not enough space to overwrite [".concat(what, "].")
     }));
@@ -4247,6 +4265,7 @@ function (_CommandError) {
     _classCallCheck(this, NotHeatersFoundError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(NotHeatersFoundError).call(this, {
+      name: 'NotHeatersFoundError',
       type: _errorTypes.NO_HEATERS_FOUND_ERROR,
       message: 'No heaters found.'
     }));
@@ -4294,6 +4313,7 @@ function (_CommandError) {
     _classCallCheck(this, NotSuspendedError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(NotSuspendedError).call(this, {
+      name: 'NotSuspendedError',
       type: _errorTypes.NOT_SUSPENDED_ERROR,
       message: 'Not suspended play.'
     }));
@@ -4344,6 +4364,7 @@ function (_RequestError) {
 
     return _possibleConstructorReturn(this, _getPrototypeOf(ParallelRequestError).call(this, {
       response: response,
+      name: 'ParallelRequestError',
       type: _errorTypes.PARALLEL_REQUEST_ERROR,
       message: 'Parallel request prohibited. Please wait for the end of a request before sending another.'
     }));
@@ -4394,6 +4415,7 @@ function (_RequestError) {
 
     return _possibleConstructorReturn(this, _getPrototypeOf(RequestAbortedError).call(this, {
       response: response,
+      name: 'RequestAbortedError',
       type: _errorTypes.REQUEST_ABORTED_ERROR,
       message: 'Request aborted.'
     }));
@@ -4444,20 +4466,22 @@ function (_Error) {
   function RequestError(_ref) {
     var _this;
 
-    var message = _ref.message,
+    var _ref$name = _ref.name,
+        name = _ref$name === void 0 ? 'RequestError' : _ref$name,
+        _ref$type = _ref.type,
+        type = _ref$type === void 0 ? _errorTypes.UNDEFINED_ERROR : _ref$type,
+        message = _ref.message,
         response = _ref.response,
         _ref$parentError = _ref.parentError,
-        parentError = _ref$parentError === void 0 ? null : _ref$parentError,
-        _ref$type = _ref.type,
-        type = _ref$type === void 0 ? _errorTypes.UNDEFINED_ERROR : _ref$type;
+        parentError = _ref$parentError === void 0 ? null : _ref$parentError;
 
     _classCallCheck(this, RequestError);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(RequestError).call(this, message));
+    _this.name = name;
     _this.type = type;
     _this.response = response;
     _this.parentError = parentError;
-    _this.name = _this.constructor.name;
 
     if (typeof Error.captureStackTrace === 'function') {
       Error.captureStackTrace(_assertThisInitialized(_this), _this.constructor);
@@ -4514,6 +4538,7 @@ function (_RequestError) {
 
     return _possibleConstructorReturn(this, _getPrototypeOf(RequestOpenError).call(this, {
       response: response,
+      name: 'RequestOpenError',
       type: _errorTypes.REQUEST_OPEN_ERROR,
       message: message
     }));
@@ -4565,6 +4590,7 @@ function (_RequestError) {
 
     return _possibleConstructorReturn(this, _getPrototypeOf(RequestTimeoutError).call(this, {
       response: response,
+      name: 'RequestTimeoutError',
       type: _errorTypes.REQUEST_TIMEOUT_ERROR,
       message: "Timeout of [".concat(timeout, "] ms exceeded.")
     }));
@@ -4616,6 +4642,7 @@ function (_RequestError) {
 
     return _possibleConstructorReturn(this, _getPrototypeOf(ServerError).call(this, {
       response: response,
+      name: 'ServerError',
       type: _errorTypes.SERVER_ERROR,
       message: "Server error [".concat(status, "].")
     }));
@@ -4663,6 +4690,7 @@ function (_CommandError) {
     _classCallCheck(this, UndefinedSettingError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(UndefinedSettingError).call(this, {
+      name: 'UndefinedSettingError',
       type: _errorTypes.UNDEFINED_SETTING_ERROR,
       message: "Undefined setting [".concat(setting, "].\nUsage: ").concat(usage)
     }));
@@ -4710,6 +4738,7 @@ function (_CommandError) {
     _classCallCheck(this, UnknownDeviceError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(UnknownDeviceError).call(this, {
+      name: 'UnknownDeviceError',
       type: _errorTypes.UNKNOWN_DEVICE_ERROR,
       message: "Unknown device [".concat(device, "].")
     }));
@@ -4757,6 +4786,7 @@ function (_CommandError) {
     _classCallCheck(this, UnknownFileSizeError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(UnknownFileSizeError).call(this, {
+      name: 'UnknownFileSizeError',
       type: _errorTypes.UNKNOWN_FILE_SIZE_ERROR,
       message: 'Unknown file size.'
     }));
@@ -4806,6 +4836,7 @@ function (_CommandError) {
     _classCallCheck(this, UnknownResponseError);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(UnknownResponseError).call(this, {
+      name: 'UnknownResponseError',
       type: _errorTypes.UNKNOWN_RESPONSE_ERROR,
       message: "Unknown response.\nUsage: ".concat(usage)
     }));
@@ -4855,6 +4886,7 @@ function (_CommandError) {
     _classCallCheck(this, UnsupportedCommandError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(UnsupportedCommandError).call(this, {
+      name: 'UnsupportedCommandError',
       type: _errorTypes.UNSUPPORTED_COMMAND_ERROR,
       message: "Unsupported command [".concat(command, "].")
     }));
@@ -4902,6 +4934,7 @@ function (_CommandError) {
     _classCallCheck(this, UnsupportedParserError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(UnsupportedParserError).call(this, {
+      name: 'UnsupportedParserError',
       type: _errorTypes.UNSUPPORTED_PARSER_ERROR,
       message: "The command parser for [".concat(command, "] is not yet supported.")
     }));
@@ -4949,6 +4982,7 @@ function (_CommandError) {
     _classCallCheck(this, UnsupportedSubcommandError);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(UnsupportedSubcommandError).call(this, {
+      name: 'UnsupportedSubcommandError',
       type: _errorTypes.UNSUPPORTED_SUBCOMMAND_ERROR,
       message: "Unsupported subcommand [".concat(subcommand, "].\nUsage: ").concat(usage)
     }));
@@ -5180,7 +5214,7 @@ function upload() {
     file: file,
     name: name,
     path: path,
-    headers: [['Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8'], ['X-Filename', fileName]],
+    headers: [['X-Filename', fileName]],
     url: "http://".concat(address, "/upload"),
     data: file,
     validateStatus: function validateStatus(status) {
@@ -5406,14 +5440,16 @@ function request() {
       _ref$timeout = _ref.timeout,
       timeout = _ref$timeout === void 0 ? 0 : _ref$timeout,
       _ref$headers = _ref.headers,
-      headers = _ref$headers === void 0 ? [['Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8']] : _ref$headers,
+      headers = _ref$headers === void 0 ? null : _ref$headers,
+      _ref$beforeSend = _ref.beforeSend,
+      beforeSend = _ref$beforeSend === void 0 ? null : _ref$beforeSend,
       _ref$onUploadProgress = _ref.onUploadProgress,
       onUploadProgress = _ref$onUploadProgress === void 0 ? null : _ref$onUploadProgress,
       _ref$validateStatus = _ref.validateStatus,
       validateStatus = _ref$validateStatus === void 0 ? function (status) {
     return status >= 200 && status < 300;
   } : _ref$validateStatus,
-      userData = _objectWithoutProperties(_ref, ["method", "url", "data", "timeout", "headers", "onUploadProgress", "validateStatus"]);
+      userData = _objectWithoutProperties(_ref, ["method", "url", "data", "timeout", "headers", "beforeSend", "onUploadProgress", "validateStatus"]);
 
   // force http protocol
   if (!url.startsWith('http://')) {
@@ -5428,6 +5464,7 @@ function request() {
     userData: userData,
     timeout: timeout,
     headers: headers,
+    beforeSend: beforeSend,
     onUploadProgress: onUploadProgress,
     validateStatus: validateStatus // create and return a Promise
 
@@ -5543,6 +5580,14 @@ function request() {
           loaded: event.loaded,
           percent: event.loaded / event.total * 100
         });
+      });
+    } // before send
+
+
+    if (typeof beforeSend === 'function') {
+      beforeSend({
+        params: params,
+        xhr: xhr
       });
     } // parallel request prohibited
 
