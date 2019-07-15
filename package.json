@@ -5,10 +5,13 @@
   "main": "./dist/bundle.http.js",
   "module": "./src/index.js",
   "scripts": {
-    "dev": "budo ./dev/index.js:bundle.js --dir ./dev --live --open -- -t [ babelify --presets [ @babel/preset-env ] ]",
+    "serv:dev": "budo ./dev/index.js:bundle.js --dir ./dev --live --open -- -t [ babelify --presets [ @babel/preset-env ] ]",
+    "serv:demo": "budo ./src/build-http.js:bundle.js --dir ./demo --live --open -- -t [ babelify --presets [ @babel/preset-env ] ]",
     "bundle:http": "browserify ./src/build-http.js -t [ babelify --presets [ @babel/preset-env ] ] > ./dist/bundle.http.js",
-    "bundle:http-tiny": "browserify ./src/build-http.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify > ./dist/bundle.http.tiny.js",
-    "lint": "eslint ./src/**"
+    "bundle:http:tiny": "browserify ./src/build-http.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify > ./dist/bundle.http.tiny.js",
+    "build:demo": "browserify ./src/build-http.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify > ./demo/bundle.js",
+    "surge:demo": "yarn build:demo && cd demo && surge --domain smoothie-commands.surge.sh",
+    "lint:src": "eslint ./src/**"
   },
   "repository": {
     "type": "git",
@@ -39,6 +42,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "readline-sync": "^1.4.9",
+    "surge": "^0.21.3",
     "tinyify": "^2.5.1"
   },
   "dependencies": {}
