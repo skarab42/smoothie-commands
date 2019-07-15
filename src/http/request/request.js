@@ -18,6 +18,7 @@ export default function request ({
   data = null,
   timeout = 0,
   headers = null,
+  beforeSend = null,
   onUploadProgress = null,
   validateStatus = status => status >= 200 && status < 300,
   ...userData
@@ -34,6 +35,7 @@ export default function request ({
     userData,
     timeout,
     headers,
+    beforeSend,
     onUploadProgress,
     validateStatus
   }
@@ -103,6 +105,10 @@ export default function request ({
           percent: event.loaded / event.total * 100
         })
       })
+    }
+    // before send
+    if (typeof beforeSend === 'function') {
+      beforeSend({ params, xhr })
     }
     // parallel request prohibited
     if (isSent(address)) {
