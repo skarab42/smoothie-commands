@@ -181,28 +181,27 @@ version                                            - Get firmware version
 
 # Development
 ### Install
-`yarn install`
+`> yarn install`
 
 ### Run dev server
-`yarn serv:dev`
+`> yarn serv:dev`
 
 ### Run demo server
-`yarn serv:demo`
+`> yarn serv:demo`
 
 ### Build bundle
-```
-yarn bundle:http
-yarn bundle:http:tiny
-```
+`> yarn bundle:http`
+
+`> yarn bundle:http:tiny`
 
 ### Build demo
-`yarn build:demo`
+`> yarn build:demo`
 
 ### Publish demo
-`yarn surge:demo`
+`> yarn surge:demo`
 
 ### Build all
-`yarn build`
+`> yarn build`
 
 ### Lint code
-`yarn lint`
+`> yarn lint`
