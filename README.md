@@ -10,6 +10,8 @@ Sent commands to smoothie firmware hardware over HTTP or Serial connexion and ge
 > * [Online demo](#online-demo)
 > * [Usages](#usages)
 >   * [HTTP interface](#http-interface)
+>     - [ES6 module](#es6-module)
+>     - [Browser](#browser)
 >   * [Serial interface](#serial-interface)
 > * [Error types](#error-types)
 >   * [CommandError](#commanderror)
@@ -22,17 +24,46 @@ Sent commands to smoothie firmware hardware over HTTP or Serial connexion and ge
 >     - [Build bundle](#build-bundle)
 >     - [Build demo](#build-demo)
 >     - [Publish demo](#publish-demo)
+>     - [Build all](#build-all)
 >     - [Lint code](#lint-code)
-
 # Online demo
 - [Http interface](http://smoothie-commands.surge.sh/)
 
 # Usages
 ## HTTP interface
+### ES6 module
 ```js
 import { command } from 'smoothie-commands/http'
 
 command({
+  address: '192.168.1.42',
+  command: 'ls',
+  args: ['/sd']
+  timeout: 1000
+})
+  .then(response => {
+    console.log('response:', response)
+    console.log('data:', response.data)
+  })
+  .catch(error => {
+    console.error(
+      `${error.name}::${error.type}:`,
+      error.message,
+      error.response
+    )
+  })
+```
+
+### Browser
+index.html
+```html
+<script src="./dist/bundle.http[.tiny].js"></script>
+<script src="./index.js"></script>
+```
+
+index.js
+```js
+smoothieCommands.command({
   address: '192.168.1.42',
   command: 'ls',
   args: ['/sd']
@@ -165,6 +196,9 @@ yarn bundle:http:tiny
 
 ### Publish demo
 `yarn surge:demo`
+
+### Build all
+`yarn build`
 
 ### Lint code
 `yarn lint`
