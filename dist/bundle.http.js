@@ -7,7 +7,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 window.smoothieCommands = http;
 
-},{"./http/index.js":90}],2:[function(require,module,exports){
+},{"./http/index.js":91}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4999,6 +4999,68 @@ exports["default"] = UnsupportedSubcommandError;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports["default"] = cat;
+
+var _catCommand = require("../../commands/parsers/catCommand.js");
+
+var _RequestError = _interopRequireDefault(require("../../errors/RequestError.js"));
+
+var _get = _interopRequireDefault(require("../request/get.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { keys.push.apply(keys, Object.getOwnPropertySymbols(object)); } if (enumerableOnly) keys = keys.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function cat() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      address = _ref.address,
+      file = _ref.file,
+      rest = _objectWithoutProperties(_ref, ["address", "file"]);
+
+  // normalize path
+  file = file.replace(/^\/|\/$/g, ''); // set params
+
+  var params = _objectSpread({}, rest, {
+    address: address,
+    file: file,
+    url: "http://".concat(address, "/").concat(file) // get file
+
+  });
+
+  return (0, _get["default"])(params).then(function (response) {
+    try {
+      response.data = _catCommand.catCommand.parse({
+        command: 'cat',
+        args: [file],
+        response: response.text.trim()
+      });
+    } catch (error) {
+      throw new _RequestError["default"]({
+        type: error.type || error.name,
+        message: error.message,
+        parentError: error,
+        response: response
+      });
+    }
+
+    return response;
+  });
+}
+
+},{"../../commands/parsers/catCommand.js":10,"../../errors/RequestError.js":76,"../request/get.js":92}],88:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports["default"] = command;
 Object.defineProperty(exports, "use", {
   enumerable: true,
@@ -5020,6 +5082,8 @@ var _use = _interopRequireDefault(require("../../commands/use.js"));
 var _parse = _interopRequireDefault(require("../../commands/parse.js"));
 
 var _upload = _interopRequireDefault(require("./upload.js"));
+
+var _cat = _interopRequireDefault(require("./cat.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -5065,6 +5129,14 @@ function command() {
       data: {
         message: 'Entering MRI debug mode...'
       }
+    }));
+  } // cat command
+
+
+  if (command === 'cat') {
+    // cat is very slow while a simple GET request is super fast
+    return (0, _cat["default"])(_objectSpread({}, params, {
+      file: args[0] || undefined
     }));
   } // upload command
 
@@ -5121,7 +5193,7 @@ function command() {
   });
 }
 
-},{"../../commands/parse.js":6,"../../commands/use.js":53,"../../errors/RequestError.js":76,"../../errors/UnsupportedCommandError.js":84,"../request/post.js":93,"../request/responseFactory.js":95,"./upload.js":89}],88:[function(require,module,exports){
+},{"../../commands/parse.js":6,"../../commands/use.js":53,"../../errors/RequestError.js":76,"../../errors/UnsupportedCommandError.js":84,"../request/post.js":94,"../request/responseFactory.js":96,"./cat.js":87,"./upload.js":90}],89:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5150,7 +5222,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var _default = _command["default"];
 exports["default"] = _default;
 
-},{"./command.js":87,"./upload.js":89}],89:[function(require,module,exports){
+},{"./command.js":88,"./upload.js":90}],90:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5243,7 +5315,7 @@ function upload() {
   });
 }
 
-},{"../../commands/parsers/uploadCommand.js":51,"../../errors/RequestError.js":76,"../request/post.js":93}],90:[function(require,module,exports){
+},{"../../commands/parsers/uploadCommand.js":51,"../../errors/RequestError.js":76,"../request/post.js":94}],91:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5299,7 +5371,7 @@ Object.keys(_index3).forEach(function (key) {
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
-},{"../commands/index.js":5,"../error-types.js":54,"./command/index.js":88,"./request/index.js":92}],91:[function(require,module,exports){
+},{"../commands/index.js":5,"../error-types.js":54,"./command/index.js":89,"./request/index.js":93}],92:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5324,7 +5396,7 @@ function get() {
   }));
 }
 
-},{"./request.js":94}],92:[function(require,module,exports){
+},{"./request.js":95}],93:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5361,7 +5433,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var _default = _request["default"];
 exports["default"] = _default;
 
-},{"./get.js":91,"./post.js":93,"./request.js":94}],93:[function(require,module,exports){
+},{"./get.js":92,"./post.js":94,"./request.js":95}],94:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5386,7 +5458,7 @@ function post() {
   }));
 }
 
-},{"./request.js":94}],94:[function(require,module,exports){
+},{"./request.js":95}],95:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5610,7 +5682,7 @@ function request() {
   });
 }
 
-},{"../../errors/NetworkError.js":68,"../../errors/ParallelRequestError.js":74,"../../errors/RequestAbortedError.js":75,"../../errors/RequestOpenError.js":77,"../../errors/RequestTimeoutError.js":78,"../../errors/ServerError.js":79,"../request/responseFactory.js":95}],95:[function(require,module,exports){
+},{"../../errors/NetworkError.js":68,"../../errors/ParallelRequestError.js":74,"../../errors/RequestAbortedError.js":75,"../../errors/RequestOpenError.js":77,"../../errors/RequestTimeoutError.js":78,"../../errors/ServerError.js":79,"../request/responseFactory.js":96}],96:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
