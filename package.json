@@ -5,11 +5,11 @@
   "main": "./dist/bundle.http.js",
   "module": "./src/index.js",
   "scripts": {
-    "serv:dev": "budo ./dev/index.js:bundle.js --dir ./dev --live --open -- -t [ babelify --presets [ @babel/preset-env ] ]",
-    "serv:demo": "budo ./src/build-http.js:bundle.js --dir ./demo --live --open -- -t [ babelify --presets [ @babel/preset-env ] ]",
-    "bundle:http": "browserify ./src/build-http.js -t [ babelify --presets [ @babel/preset-env ] ] > ./dist/bundle.http.js",
-    "bundle:http:tiny": "browserify ./src/build-http.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify > ./dist/bundle.http.tiny.js",
-    "build:demo": "browserify ./src/build-http.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify > ./demo/bundle.js",
+    "serv:dev": "budo ./dev/index.js:bundle.js --dir ./dev --live --open -- -t babelify",
+    "serv:demo": "budo ./src/build-http.js:bundle.js --dir ./demo --live --open -- -t babelify",
+    "bundle:http": "browserify ./src/build-http.js -t babelify > ./dist/bundle.http.js",
+    "bundle:http:tiny": "browserify ./src/build-http.js -t babelify -p tinyify > ./dist/bundle.http.tiny.js",
+    "build:demo": "browserify ./src/build-http.js -t babelify -p tinyify > ./demo/bundle.js",
     "surge:demo": "yarn build:demo && cd demo && surge --domain smoothie-commands.surge.sh",
     "lint:src": "eslint ./src/**"
   },
@@ -32,7 +32,6 @@
   "homepage": "https://github.com/lautr3k/smoothie-commands#readme",
   "devDependencies": {
     "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
     "babelify": "^10.0.0",
     "budo": "^11.6.2",
     "eslint": "^6.0.1",
