@@ -13,15 +13,26 @@ const commands = [
 
 const myQueue = queue({
   commands,
+  onStart (payload) {
+    console.log('start:', payload.commands.length)
+  },
+  onPause (payload) {
+    console.log('pause:', payload.commands.length)
+  },
+  onResume (payload) {
+    console.log('resume:', payload.commands.length)
+  },
+  onStop (payload) {
+    console.log('stop:', payload.commands.length)
+  },
   onSend (payload) {
-    console.log('send:', payload)
+    console.log('send:', payload.command, payload.commands.length)
   },
   onResponse (payload) {
-    console.log('response:', payload)
+    console.log('response:', payload.response)
   },
   onError (payload) {
-    console.error('error:', payload)
-
+    console.error('error:', payload.error)
   },
   onDone (results) {
     console.log('done:', results)

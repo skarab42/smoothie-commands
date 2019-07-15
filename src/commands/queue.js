@@ -16,7 +16,7 @@ export default function queue ({
   let globalResolve = null
   let globalReject = null
   function payload (params = {}) {
-    return { ...params, resolve: globalResolve, reject: globalReject }
+    return { ...params, commands, resolve: globalResolve, reject: globalReject }
   }
   function processQueue () {
     if (paused || !started) return
@@ -53,7 +53,7 @@ export default function queue ({
         globalResolve = resolve
         globalReject = reject
         if (typeof onStart === 'function') {
-          onStart(payload({ commands }))
+          onStart(payload())
         }
         return processQueue()
       })
@@ -63,7 +63,7 @@ export default function queue ({
       if (!started || paused) return
       paused = true
       if (typeof onPause === 'function') {
-        onPause(payload({ commands }))
+        onPause(payload())
       }
     },
 
@@ -71,7 +71,7 @@ export default function queue ({
       if (!paused) return
       paused = false
       if (typeof onResume === 'function') {
-        onResume(payload({ commands }))
+        onResume(payload())
       }
       return processQueue()
     },
@@ -79,7 +79,7 @@ export default function queue ({
     stop () {
       if (!started) return
       if (typeof onStop === 'function') {
-        onStop(payload({ commands }))
+        onStop(payload())
       }
       started = false
       paused = false
