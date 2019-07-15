@@ -16,13 +16,16 @@ Sent commands to smoothie firmware hardware over HTTP or Serial connexion and ge
 >   * [RequestError](#requesterror)
 > * [Supported commands](#supported-commands)
 > * [Development](#development)
->   * [Install](#install)
->   * [Run dev server](#run-dev-server)
->   * [Build bundle](#build-bundle)
->   * [Lint code](#lint-code)
+>     - [Install](#install)
+>     - [Run dev server](#run-dev-server)
+>     - [Run demo server](#run-demo-server)
+>     - [Build bundle](#build-bundle)
+>     - [Build demo](#build-demo)
+>     - [Publish demo](#publish-demo)
+>     - [Lint code](#lint-code)
 
 # Online demo
-- [Http interface](https://onlfait.github.io/smoothie-commands/demo/)
+- [Http interface](http://smoothie-commands.surge.sh/)
 
 # Usages
 ## HTTP interface
@@ -142,17 +145,26 @@ version                                            - Get firmware version
 ```
 
 # Development
-## Install
+### Install
 `yarn install`
 
-## Run dev server
-`yarn dev`
+### Run dev server
+`yarn serv:dev`
 
-## Build bundle
+### Run demo server
+`yarn serv:demo`
+
+### Build bundle
 ```
 yarn bundle:http
-yarn bundle:http-tiny
+yarn bundle:http:tiny
 ```
 
-## Lint code
+### Build demo
+`yarn build:demo`
+
+### Publish demo
+`yarn surge:demo`
+
+### Lint code
 `yarn lint`
