@@ -5,6 +5,7 @@ import post from '../request/post.js'
 import use from '../../commands/use.js'
 import parse from '../../commands/parse.js'
 import upload from './upload.js'
+import cat from './cat.js'
 
 export { use }
 
@@ -27,6 +28,12 @@ export default function command ({ address, command, args = [], ...rest } = {}) 
     post(params) // send break command, and return a fake response
     let response = responseFactory({ params, xhr: new XMLHttpRequest() })
     return Promise.resolve({ ...response, data: { message: 'Entering MRI debug mode...' } })
+  }
+
+  // cat command
+  if (command === 'cat') {
+    // cat is very slow while a simple GET request is super fast
+    return cat({ ...params, file: args[0] || undefined })
   }
 
   // upload command
