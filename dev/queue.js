@@ -1,4 +1,4 @@
-import { queue, command } from '../src/http'
+import { queue } from '../src/http'
 
 const address = '192.168.1.121'
 

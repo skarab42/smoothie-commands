@@ -95,7 +95,7 @@ By default parallel request are prohibited and you need to wait for the end of a
 But fortunately there is the `queue()` helper to help you manage this constraint.
 
 ```js
-import { queue, command } from '../src/http'
+import { queue } from '../src/http'
 
 const address = '192.168.1.121'
 
