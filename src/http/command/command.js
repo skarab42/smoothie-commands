@@ -63,8 +63,13 @@ export default function command ({ address, command, args = [], ...rest } = {}) 
       if (response.text.startsWith('error:Unsupported command')) {
         throw new UnsupportedCommandError(command)
       }
-      response.data = parse({ command, args, response: response.text.trim() })
+      response.data = parse({ command, args, response: response.text })
     } catch (error) {
+      if (error.type === 'UNSUPPORTED_PARSER_ERROR') {
+        const ok = response.text.toLowerCase() === 'ok'
+        response.data = ok ? { ok: true } : response.text
+        return response
+      }
       throw new RequestError({
         type: error.type || error.name,
         message: error.message,
