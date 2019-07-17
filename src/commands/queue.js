@@ -13,10 +13,9 @@ export default function queue ({
   let started = false
   let paused = false
   let results = []
-  let globalResolve = null
-  let globalReject = null
+  let promise = { resolve: null, reject: null }
   function payload (params = {}) {
-    return { ...params, commands, resolve: globalResolve, reject: globalReject }
+    return { ...params, commands, promise }
   }
   function processQueue () {
     if (paused || !started) return
@@ -25,7 +24,7 @@ export default function queue ({
       if (typeof onDone === 'function') {
         onDone(results)
       }
-      return globalResolve(results)
+      return promise.resolve(results)
     }
     if (typeof onSend === 'function') {
       onSend(payload({ command }))
@@ -65,8 +64,8 @@ export default function queue ({
       if (started || !commands.length) return
       started = true
       return new Promise((resolve, reject) => {
-        globalResolve = resolve
-        globalReject = reject
+        promise.resolve = resolve
+        promise.reject = reject
         if (typeof onStart === 'function') {
           onStart(payload())
         }
