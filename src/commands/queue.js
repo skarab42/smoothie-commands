@@ -45,7 +45,22 @@ export default function queue ({
       })
       .then(() => processQueue())
   }
+  function appendPrepend (func, what, where) {
+    if (!Array.isArray(what)) {
+      what = [what]
+    }
+    if (func === 'unshift') {
+      what = what.reverse()
+    }
+    what.forEach(item => where[func](item))
+  }
   return {
+    append (...command) {
+      command.forEach(c => appendPrepend('push', c, commands))
+    },
+    prepend (...command) {
+      command.forEach(c => appendPrepend('unshift', c, commands))
+    },
     start () {
       if (started || !commands.length) return
       started = true
@@ -58,7 +73,6 @@ export default function queue ({
         return processQueue()
       })
     },
-
     pause () {
       if (!started || paused) return
       paused = true
@@ -66,7 +80,6 @@ export default function queue ({
         onPause(payload())
       }
     },
-
     resume () {
       if (!paused) return
       paused = false
@@ -75,7 +88,6 @@ export default function queue ({
       }
       return processQueue()
     },
-
     stop () {
       if (!started) return
       if (typeof onStop === 'function') {
