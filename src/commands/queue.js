@@ -33,13 +33,13 @@ export default function queue ({
       .then(response => {
         results.push(response)
         if (typeof onResponse === 'function') {
-          onResponse(payload({ response }))
+          onResponse(payload({ command, response }))
         }
       })
       .catch(error => {
         results.push(error)
         if (typeof onError === 'function') {
-          onError(payload({ error }))
+          onError(payload({ command, error }))
         }
       })
       .then(() => processQueue())
