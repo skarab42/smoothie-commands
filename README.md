@@ -95,10 +95,11 @@ By default parallel request are prohibited and you need to wait for the end of a
 But fortunately there is the `queue()` helper to help you manage this constraint.
 
 ```js
-import { queue } from '../src/http'
+import { queue } from 'smoothie-commands/http'
 
 const address = '192.168.1.121'
 
+// command list
 const commands = [
   { address, command: 'version' },
   { address, command: 'get status' },
@@ -108,8 +109,8 @@ const commands = [
   { address, command: 'get status' }
 ]
 
-const myQueue = queue({
-  commands,
+// queue callbacks
+const callbacks = {
   onStart (payload) {
     console.log('start:', payload.commands.length)
   },
@@ -134,10 +135,38 @@ const myQueue = queue({
   onDone (results) {
     console.log('done:', results)
   }
-})
+}
 
+// create the queue
+const myQueue = queue({ commands, ...callbacks })
+
+// append/prepend one command
+myQueue.append({ address, command: 'help' })
+
+// append/prepend multiple command (version is called first)
+myQueue.prepend({ address, command: 'help' }, { address, command: 'version' })
+
+// append/prepend command block (help is called first)
+myQueue.prepend([
+  { address, command: 'help' },
+  { address, command: 'version' }
+])
+
+// mixed style (call => G0 X10 Y50, get status, version, help)
+myQueue.prepend(
+  { address, command: 'help' },
+  { address, command: 'version' },
+  [
+    { address, command: 'G0 X10 Y50' },
+    { address, command: 'get status' }
+  ]
+)
+
+// start the queue
 myQueue.start()
   .then(results => {
+    // return an array of results,
+    // can by a response or an Error object
     console.log(results)
   })
 // myQueue.pause()
